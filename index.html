@@ -1,648 +1,247 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KEN'S GOLF BANGKOK | ゴルフで叶えるタイ長期滞在 DTV対応プログラム</title>
-  <meta name="description" content="DTVビザでタイに長期滞在。KEN'S GOLF BANGKOKのゴルフプログラムはDTV申請対応。ビザ書類発行からゴルフライフまでトータルサポート。バンコク・トンロー。">
+  <title>Ken's Golf | Master Your Game - Bangkok, Thailand</title>
+  <meta name="description" content="Premium golf instruction and master-level club repair in Bangkok. No language barriers. Four languages, one destination.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <style>
-    /* ============================================
-       CSS CUSTOM PROPERTIES & RESET
-    ============================================ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', 'Montserrat', sans-serif; color: #333; background: #fff; line-height: 1.8; font-size: 16px; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: #fff; background: #0a0a0a; line-height: 1.7; font-size: 16px; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
     img { max-width: 100%; height: auto; display: block; }
     :root {
-      --primary: #1a5c2e;
-      --primary-dark: #0e3d1c;
-      --primary-light: #2d8a47;
-      --gold: #c9a84c;
-      --gold-light: #dfc06a;
-      --gold-dark: #a88a32;
-      --dark: #1a1a2e;
-      --dark-light: #16213e;
+      --green: #2CB441;
+      --green-dark: #1f8a30;
+      --green-light: #3dd654;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --dark-card: #1a1a1a;
       --white: #ffffff;
-      --light-bg: #f8f9f6;
-      --gray: #666;
-      --light-gray: #e0e0e0;
-      --text: #2d2d2d;
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
-      --radius: 16px;
-      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --gray: #999;
+      --gray-light: #ccc;
+      --gray-dark: #666;
+      --section-pad: 120px;
     }
 
-    /* ============================================
-       PRELOADER
-    ============================================ */
-    .preloader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--dark);
-      display: flex; align-items: center; justify-content: center; flex-direction: column;
-      transition: opacity 0.6s, visibility 0.6s;
-    }
+    /* PRELOADER */
+    .preloader { position: fixed; inset: 0; z-index: 9999; background: var(--black); display: flex; align-items: center; justify-content: center; flex-direction: column; transition: opacity 0.8s, visibility 0.8s; }
     .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .preloader-logo {
-      font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900;
-      color: var(--white); letter-spacing: 3px;
-    }
-    .preloader-logo span { color: var(--gold); }
-    .preloader-bar {
-      width: 200px; height: 3px; background: rgba(255,255,255,0.15);
-      margin-top: 24px; border-radius: 3px; overflow: hidden;
-    }
-    .preloader-fill {
-      width: 0%; height: 100%; background: var(--gold);
-      border-radius: 3px; animation: preloaderFill 1.5s ease forwards;
-    }
-    @keyframes preloaderFill { to { width: 100%; } }
+    .preloader-text { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 900; color: var(--white); letter-spacing: 2px; }
+    .preloader-text span { color: var(--green); }
+    .preloader-bar { width: 180px; height: 2px; background: #222; margin-top: 20px; border-radius: 2px; overflow: hidden; }
+    .preloader-fill { width: 0; height: 100%; background: var(--green); animation: pfill 1.5s ease forwards; }
+    @keyframes pfill { to { width: 100%; } }
 
-    /* ============================================
-       SCROLL PROGRESS BAR
-    ============================================ */
-    .scroll-progress {
-      position: fixed; top: 0; left: 0; width: 0%; height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--primary-light));
-      z-index: 10001; transition: width 0.1s linear;
-    }
+    /* SCROLL PROGRESS */
+    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--green); z-index: 10001; }
 
-    /* ============================================
-       SCROLL ANIMATIONS
-    ============================================ */
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .reveal-scale { opacity: 0; transform: scale(0.85); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal-scale.visible { opacity: 1; transform: scale(1); }
-    .stagger-1 { transition-delay: 0.1s; }
-    .stagger-2 { transition-delay: 0.2s; }
-    .stagger-3 { transition-delay: 0.3s; }
-    .stagger-4 { transition-delay: 0.4s; }
-    .stagger-5 { transition-delay: 0.5s; }
-    .stagger-6 { transition-delay: 0.6s; }
+    /* SCROLL ANIMATIONS */
+    [data-animate] { opacity: 0; transform: translateY(50px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+    [data-animate="left"] { transform: translateX(-60px); }
+    [data-animate="right"] { transform: translateX(60px); }
+    [data-animate="scale"] { transform: scale(0.88); }
+    [data-animate].is-visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; } .delay-6 { transition-delay: 0.6s; }
 
-    /* ============================================
-       HEADER
-    ============================================ */
-    header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: transparent; transition: all 0.4s ease;
-      padding: 8px 0;
-    }
-    header.scrolled {
-      background: rgba(26,26,46,0.97); backdrop-filter: blur(12px);
-      box-shadow: 0 2px 30px rgba(0,0,0,0.2); padding: 0;
-    }
-    .nav-container {
-      max-width: 1200px; margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between; height: 72px;
-    }
-    .logo { display: flex; align-items: center; gap: 12px; }
-    .logo-icon {
-      width: 46px; height: 46px; background: var(--gold); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 900; color: var(--dark);
-      font-family: 'Montserrat', sans-serif; letter-spacing: -0.5px;
-      transition: transform 0.3s;
-    }
-    .logo:hover .logo-icon { transform: rotate(20deg) scale(1.1); }
-    .logo-text {
-      color: var(--white); font-family: 'Montserrat', sans-serif;
-      font-weight: 900; font-size: 20px; letter-spacing: 2px;
-    }
-    .logo-text span { color: var(--gold); }
-    nav ul { display: flex; gap: 28px; align-items: center; }
-    nav ul li a {
-      color: var(--white); font-size: 13px; font-weight: 600;
-      letter-spacing: 0.5px; transition: color 0.3s; padding: 8px 0;
-      position: relative;
-    }
-    nav ul li a::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px; background: var(--gold);
-      transition: width 0.3s ease;
-    }
-    nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
-    nav ul li a:hover { color: var(--gold); }
-    nav ul li a.active { color: var(--gold); }
-    .nav-cta { display: flex; gap: 10px; }
-    .btn {
-      display: inline-block; padding: 11px 28px; border-radius: 8px;
-      font-size: 14px; font-weight: 700; transition: all var(--transition);
-      cursor: pointer; border: none; text-align: center; position: relative;
-      overflow: hidden;
-    }
-    .btn::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .btn:hover::before { opacity: 1; }
-    .btn-gold { background: var(--gold); color: var(--dark); }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201,168,76,0.4); }
-    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.6); }
-    .btn-outline:hover { background: var(--white); color: var(--dark); border-color: var(--white); }
-    .btn-primary { background: var(--primary); color: var(--white); }
-    .btn-primary:hover { background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(26,92,46,0.4); }
-    .btn-large { padding: 16px 40px; font-size: 16px; border-radius: 10px; }
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: transparent; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; padding: 6px 0; }
+    header.scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); box-shadow: 0 1px 30px rgba(0,0,0,0.4); padding: 0; }
+    .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 22px; letter-spacing: 0.5px; }
+    .logo-icon { width: 40px; height: 40px; background: url('https://picsum.photos/seed/kglogo/80/80') center/cover no-repeat; border-radius: 50%; }
+    nav ul { display: flex; gap: 36px; align-items: center; }
+    nav ul li a { font-size: 14px; font-weight: 600; color: var(--gray-light); transition: color 0.3s; letter-spacing: 0.3px; }
+    nav ul li a:hover, nav ul li a.active { color: var(--green); }
+    .nav-lang { display: flex; gap: 12px; align-items: center; }
+    .nav-lang a { font-size: 13px; font-weight: 700; color: var(--gray); transition: color 0.3s; }
+    .nav-lang a:hover, .nav-lang a.active { color: var(--white); }
     .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 5px; z-index: 100; }
     .hamburger span { display: block; width: 28px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
 
-    /* ============================================
-       HERO
-    ============================================ */
-    .hero {
-      position: relative; min-height: 100vh; display: flex;
-      align-items: center; justify-content: center; text-align: center;
-      color: var(--white); overflow: hidden;
-    }
-    .hero-bg-img {
-      position: absolute; inset: 0;
-      background: url('https://picsum.photos/seed/kensgolf-hero/1920/1080') center/cover no-repeat;
-      z-index: 0; transform: scale(1.1);
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(26,26,46,0.92) 0%, rgba(14,61,28,0.82) 50%, rgba(26,92,46,0.75) 100%);
-      z-index: 1;
-    }
-    .hero-pattern {
-      position: absolute; inset: 0; z-index: 2;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 40%),
-        radial-gradient(circle at 60% 80%, rgba(201,168,76,0.05) 0%, transparent 40%);
-    }
-    #hero-canvas {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 3; max-width: 900px; padding: 0 24px; }
-    .hero-badge {
-      display: inline-block; background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
-      padding: 8px 24px; border-radius: 30px; font-size: 13px;
-      font-weight: 700; letter-spacing: 2px; margin-bottom: 28px;
-      text-transform: uppercase; animation: badgePulse 2s ease-in-out infinite;
-    }
-    @keyframes badgePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.3); }
-      50% { box-shadow: 0 0 0 12px rgba(201,168,76,0); }
-    }
-    .hero h1 { font-size: 52px; font-weight: 900; line-height: 1.3; margin-bottom: 20px; }
-    .hero h1 .highlight { color: var(--gold); position: relative; }
-    .hero h1 .highlight::after {
-      content: ''; position: absolute; bottom: -2px; left: 0;
-      width: 100%; height: 4px; background: var(--gold); border-radius: 2px;
-      transform: scaleX(0); animation: underlineIn 0.8s 1.5s ease forwards;
-    }
-    @keyframes underlineIn { to { transform: scaleX(1); } }
-    .hero .hero-lead { font-size: 20px; line-height: 1.8; margin-bottom: 12px; font-weight: 700; }
-    .hero p { font-size: 16px; line-height: 1.9; margin-bottom: 40px; opacity: 0.9; }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .hero-stats {
-      margin-top: 60px; display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
-    }
-    .hero-stat {
-      text-align: center; padding: 20px 28px;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px; min-width: 160px;
-      backdrop-filter: blur(4px); transition: all 0.3s;
-    }
-    .hero-stat:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
-    .hero-stat .number {
-      font-family: 'Montserrat', sans-serif; font-size: 36px;
-      font-weight: 900; color: var(--gold); display: block;
-    }
-    .hero-stat .label { font-size: 13px; font-weight: 600; opacity: 0.8; margin-top: 4px; }
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://picsum.photos/seed/kghero99/1920/1080') center/cover no-repeat; z-index: 0; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.75) 100%); z-index: 1; }
+    #heroCanvas { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+    .hero-inner { position: relative; z-index: 3; max-width: 1280px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 60px; }
+    .hero-left { flex: 1; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 16px; margin-bottom: 20px; font-size: 13px; font-weight: 600; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+    .hero-tag .badge { background: var(--green); color: var(--black); padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; }
+    .hero h1 { font-family: 'Inter', sans-serif; font-size: 90px; font-weight: 900; line-height: 0.95; letter-spacing: -2px; margin-bottom: 32px; text-transform: uppercase; }
+    .hero h1 .green { color: var(--green); font-style: italic; }
+    .hero-desc { font-size: 17px; color: var(--gray-light); line-height: 1.7; margin-bottom: 8px; max-width: 540px; }
+    .hero-desc .highlight { color: var(--green); font-weight: 700; }
+    .hero-desc-sub { font-size: 15px; color: var(--gray); margin-bottom: 36px; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; transition: all 0.3s; cursor: pointer; border: none; position: relative; overflow: hidden; }
+    .btn-green { background: var(--green); color: var(--black); }
+    .btn-green:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(44,180,65,0.3); }
+    .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--gray-dark); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+    .btn-arrow::after { content: '→'; transition: transform 0.3s; }
+    .btn-arrow:hover::after { transform: translateX(4px); }
+    .hero-right { flex-shrink: 0; }
+    .global-access { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px 28px; backdrop-filter: blur(8px); min-width: 260px; }
+    .global-access-title { font-size: 12px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .global-access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .global-access-grid span { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .global-access-grid span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
 
-    /* Typed cursor */
-    .typed-cursor { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-left: 2px; animation: blink 0.7s infinite; vertical-align: text-bottom; }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    /* MARQUEE */
+    .marquee-strip { background: var(--green); padding: 14px 0; overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 20s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item { display: flex; align-items: center; gap: 20px; padding: 0 20px; white-space: nowrap; font-size: 15px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 2px; }
+    .marquee-item .star { font-size: 12px; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* ============================================
-       SECTION COMMON
-    ============================================ */
-    .section { padding: 100px 24px; }
-    .section-light { background: var(--light-bg); }
-    .section-dark { background: var(--dark); color: var(--white); }
-    .section-primary { background: var(--primary-dark); color: var(--white); }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 64px; }
-    .section-label {
-      display: inline-block; background: rgba(26,92,46,0.1);
-      color: var(--primary); padding: 5px 18px; border-radius: 20px;
-      font-size: 12px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 14px;
-    }
-    .section-dark .section-label, .section-primary .section-label {
-      background: rgba(201,168,76,0.15); color: var(--gold);
-    }
-    .section-header h2 {
-      font-size: 38px; font-weight: 900; color: var(--dark);
-      margin-bottom: 16px; line-height: 1.4;
-    }
-    .section-dark .section-header h2, .section-primary .section-header h2 { color: var(--white); }
-    .section-header p { font-size: 16px; color: var(--gray); max-width: 650px; margin: 0 auto; line-height: 1.8; }
-    .section-dark .section-header p, .section-primary .section-header p { color: rgba(255,255,255,0.7); }
+    /* SECTIONS */
+    .section { padding: var(--section-pad) 40px; }
+    .section-white { background: var(--white); color: var(--black); }
+    .section-dark { background: var(--dark); }
+    .section-black { background: var(--black); }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+    .section-label .icon { font-size: 14px; }
 
-    /* ============================================
-       PROBLEM / SOLUTION
-    ============================================ */
-    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 48px; }
-    .problem-card, .solution-card { padding: 40px; border-radius: var(--radius); position: relative; overflow: hidden; }
-    .problem-card { background: #fef5f5; border: 2px solid #f5c6c6; }
-    .problem-card h3 { color: #c0392b; font-size: 20px; margin-bottom: 16px; font-weight: 800; }
-    .solution-card { background: #eef8f1; border: 2px solid #a8ddb5; }
-    .solution-card h3 { color: var(--primary); font-size: 20px; margin-bottom: 16px; font-weight: 800; }
-    .problem-card ul li, .solution-card ul li { font-size: 15px; padding: 7px 0; display: flex; align-items: flex-start; gap: 10px; }
+    /* ABOUT */
+    .about-title { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 900; line-height: 1.0; margin-bottom: 28px; }
+    .about-title .green { color: var(--green); }
+    .section-white .about-title { color: var(--black); }
+    .about-desc { font-size: 18px; color: var(--gray-dark); line-height: 1.8; max-width: 650px; margin-bottom: 40px; border-left: 3px solid var(--green); padding-left: 20px; }
+    .about-features { display: flex; gap: 48px; padding-top: 24px; border-top: 1px solid #eee; }
+    .about-feature { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; color: var(--gray-dark); }
+    .about-feature .ico { width: 40px; height: 40px; border: 1px solid #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
 
-    /* SCENE STRIP - Marquee */
-    .scene-strip-wrapper { overflow: hidden; border-radius: 12px; margin-top: 48px; }
-    .scene-strip {
-      display: flex; gap: 12px; width: max-content;
-      animation: marquee 25s linear infinite;
-    }
-    .scene-strip:hover { animation-play-state: paused; }
-    .scene-item {
-      width: 260px; height: 160px; border-radius: 10px;
-      flex-shrink: 0; transition: transform 0.3s;
-    }
-    .scene-item:hover { transform: scale(1.05); }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    /* MASTER / INSTRUCTOR */
+    .master-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .master-photo { border-radius: 8px; overflow: hidden; position: relative; }
+    .master-photo img { width: 100%; height: 600px; object-fit: cover; filter: grayscale(100%); transition: filter 0.5s; }
+    .master-photo:hover img { filter: grayscale(0%); }
+    .master-photo-accent { position: absolute; bottom: 0; left: 0; width: 60px; height: 60px; border: 3px solid var(--green); border-radius: 0; }
+    .master-name { font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 900; line-height: 1.0; margin-bottom: 8px; }
+    .master-role { color: var(--green); font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 28px; }
+    .master-detail-label { font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; margin-top: 20px; }
+    .master-detail-text { font-size: 15px; color: var(--gray); line-height: 1.7; }
+    .master-bio { font-size: 14px; color: var(--gray); line-height: 1.8; margin-top: 24px; padding-top: 20px; border-top: 1px solid #333; }
+    .master-cta { margin-top: 28px; }
+    .link-arrow { font-size: 13px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s; }
+    .link-arrow:hover { gap: 14px; }
 
-    /* ============================================
-       FLOW
-    ============================================ */
-    .flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
-    .flow-step {
-      text-align: center; padding: 36px 24px; background: var(--white);
-      border-radius: var(--radius); box-shadow: var(--shadow);
-      position: relative; transition: all var(--transition);
-    }
-    .flow-step:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-    .flow-step-num {
-      width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: var(--white); border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-family: 'Montserrat'; font-size: 24px;
-      font-weight: 900; margin: 0 auto 18px; transition: transform 0.3s;
-    }
-    .flow-step:hover .flow-step-num { transform: scale(1.15) rotate(10deg); }
-    .flow-step h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
-    .flow-step p { font-size: 13px; color: var(--gray); line-height: 1.7; }
-    .flow-connector {
-      position: absolute; top: 50%; width: calc(100% - 60px); height: 2px;
-      left: calc(50% + 30px); background: repeating-linear-gradient(90deg, var(--primary-light) 0, var(--primary-light) 8px, transparent 8px, transparent 16px);
-      opacity: 0.3;
-    }
+    /* ATELIER */
+    .atelier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .atelier-title { font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 900; line-height: 1.0; margin-bottom: 24px; color: var(--black); }
+    .atelier-desc { font-size: 16px; color: var(--gray-dark); line-height: 1.8; margin-bottom: 32px; }
+    .atelier-services { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 36px; }
+    .atelier-service { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; padding: 12px 0; border-bottom: 1px solid #eee; }
+    .atelier-service .ico { font-size: 16px; color: var(--gray); }
+    .atelier-photo { position: relative; }
+    .atelier-photo img { border-radius: 8px; width: 100%; height: 500px; object-fit: cover; }
+    .atelier-photo-card { position: absolute; bottom: -20px; right: -20px; background: var(--white); border: 1px solid #eee; border-radius: 12px; padding: 20px 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+    .atelier-photo-card .row { display: flex; gap: 32px; }
+    .atelier-photo-card .stat-label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+    .atelier-photo-card .stat-value { font-size: 16px; font-weight: 800; color: var(--black); }
 
-    /* ============================================
-       MERIT
-    ============================================ */
-    .merit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .merit-card {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius); padding: 40px 28px; text-align: center;
-      transition: all var(--transition); position: relative; overflow: hidden;
-    }
-    .merit-card::before {
-      content: ''; position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%; background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 60%);
-      opacity: 0; transition: opacity 0.5s; pointer-events: none;
-    }
-    .merit-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); border-color: rgba(201,168,76,0.3); }
-    .merit-card:hover::before { opacity: 1; }
-    .merit-card .icon { font-size: 48px; margin-bottom: 18px; display: block; }
-    .merit-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--gold); }
-    .merit-card p { font-size: 14px; opacity: 0.8; line-height: 1.8; }
+    /* ADVANTAGES */
+    .adv-title { font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 900; text-align: center; margin-bottom: 60px; font-style: italic; }
+    .adv-title .green { color: var(--green); }
+    .adv-title-bar { width: 50px; height: 3px; background: var(--green); margin: 20px auto 0; }
+    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .adv-card { background: var(--dark-card); border-radius: 12px; overflow: hidden; transition: transform 0.4s, box-shadow 0.4s; }
+    .adv-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .adv-card-img { height: 220px; overflow: hidden; position: relative; }
+    .adv-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .adv-card:hover .adv-card-img img { transform: scale(1.08); }
+    .adv-card-badge { position: absolute; bottom: 12px; right: 12px; width: 36px; height: 36px; background: rgba(44,180,65,0.15); border: 1px solid var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--green); }
+    .adv-card-body { padding: 24px; }
+    .adv-card-body h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+    .adv-card-body p { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
 
-    /* ============================================
-       GALLERY (Lightbox)
-    ============================================ */
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .gallery-item {
-      height: 220px; border-radius: 12px; position: relative;
-      overflow: hidden; cursor: pointer; transition: all var(--transition);
-    }
-    .gallery-item:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
-    .gallery-item.gallery-large { grid-column: span 2; height: 280px; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .gallery-item:hover img { transform: scale(1.1); }
-    .gallery-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 16px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.75));
-      color: var(--white); font-size: 13px; font-weight: 600;
-      transform: translateY(100%); transition: transform 0.4s;
-    }
-    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+    /* STATS */
+    .stats-row { display: flex; justify-content: center; gap: 100px; padding: 80px 40px; text-align: center; }
+    .stat-item .stat-icon { width: 56px; height: 56px; border: 1px solid #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 16px; color: var(--gray-dark); }
+    .stat-item .stat-num { font-size: 56px; font-weight: 900; color: var(--black); font-family: 'Inter', sans-serif; letter-spacing: -2px; }
+    .stat-item .stat-label { font-size: 13px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
 
-    /* Lightbox Modal */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 9998;
-      background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden; transition: all 0.4s;
-    }
-    .lightbox.active { opacity: 1; visibility: visible; }
-    .lightbox img {
-      max-width: 85vw; max-height: 85vh; border-radius: 12px;
-      transform: scale(0.9); transition: transform 0.4s;
-    }
-    .lightbox.active img { transform: scale(1); }
-    .lightbox-close {
-      position: absolute; top: 24px; right: 32px; font-size: 36px;
-      color: var(--white); cursor: pointer; transition: all 0.3s;
-      width: 50px; height: 50px; display: flex; align-items: center;
-      justify-content: center; border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-    }
-    .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+    /* CTA */
+    .cta-section { position: relative; padding: 140px 40px; text-align: center; overflow: hidden; }
+    .cta-bg { position: absolute; inset: 0; background: url('https://picsum.photos/seed/kgcta/1920/800') center/cover no-repeat; z-index: 0; }
+    .cta-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.75); z-index: 1; }
+    .cta-content { position: relative; z-index: 2; }
+    .cta-title { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 900; color: var(--black); margin-bottom: 16px; }
+    .cta-title .green { color: var(--green); }
+    .cta-sub { font-size: 17px; color: var(--gray-dark); margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; }
 
-    /* ============================================
-       INSTRUCTOR
-    ============================================ */
-    .instructor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .instructor-card {
-      background: var(--white); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow); transition: all var(--transition);
-    }
-    .instructor-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-    .instructor-photo {
-      height: 300px; background-color: #ddd; overflow: hidden; position: relative;
-    }
-    .instructor-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-    .instructor-card:hover .instructor-photo img { transform: scale(1.08); }
-    .instructor-info { padding: 28px; }
-    .instructor-info h3 { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
-    .instructor-title { color: var(--gold-dark); font-size: 13px; font-weight: 700; margin-bottom: 12px; }
-    .instructor-info p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+    /* FOOTER */
+    footer { background: var(--black); padding: 60px 40px 30px; border-top: 1px solid #1a1a1a; }
+    .footer-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+    .footer-brand { font-size: 22px; font-weight: 900; margin-bottom: 14px; }
+    .footer-brand-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a { width: 40px; height: 40px; border: 1px solid #333; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--gray); transition: all 0.3s; }
+    .footer-social a:hover { border-color: var(--green); color: var(--green); }
+    .footer-col h4 { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 20px; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 14px; color: var(--gray); transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-col ul li a::before { content: '· '; }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding-top: 24px; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-dark); }
+    .footer-langs { display: flex; gap: 8px; }
+    .footer-langs span { padding: 0 4px; }
 
-    /* ============================================
-       PROGRAM
-    ============================================ */
-    .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-    .program-card {
-      background: var(--white); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow);
-      transition: all var(--transition); display: flex;
-    }
-    .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .program-icon {
-      width: 140px; min-width: 140px; overflow: hidden;
-      position: relative;
-    }
-    .program-icon img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .program-card:hover .program-icon img { transform: scale(1.1); }
-    .program-body { padding: 28px; flex: 1; }
-    .program-body .sub {
-      color: var(--gold-dark); font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;
-    }
-    .program-body h3 { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
-    .program-body p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+    /* BACK TO TOP */
+    .back-top { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 48px; height: 48px; background: var(--green); color: var(--black); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; opacity: 0; transform: translateY(20px); transition: all 0.4s; pointer-events: none; }
+    .back-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    .back-top:hover { background: var(--green-light); transform: translateY(-4px); }
 
-    /* ============================================
-       PRICING
-    ============================================ */
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1060px; margin: 0 auto; }
-    .pricing-card {
-      background: var(--white); border-radius: var(--radius);
-      padding: 44px 32px; box-shadow: var(--shadow); text-align: center;
-      position: relative; border: 2px solid transparent;
-      transition: all var(--transition);
-    }
-    .pricing-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-    .pricing-card.featured { border-color: var(--gold); transform: scale(1.04); }
-    .pricing-card.featured:hover { transform: scale(1.04) translateY(-8px); }
-    .pricing-badge {
-      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: var(--white); padding: 5px 24px; border-radius: 20px;
-      font-size: 12px; font-weight: 800; letter-spacing: 1px;
-    }
-    .pricing-card h3 { font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
-    .pricing-card .price {
-      font-family: 'Montserrat'; font-size: 44px; font-weight: 900;
-      color: var(--primary-dark); margin: 20px 0 4px;
-    }
-    .pricing-card .price span { font-size: 16px; font-weight: 500; color: var(--gray); }
-    .pricing-card .price-note { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
-    .pricing-features { text-align: left; margin-bottom: 28px; }
-    .pricing-features li {
-      padding: 8px 0; font-size: 14px; color: #555;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .pricing-features li::before { content: '✓'; color: var(--primary); font-weight: 700; font-size: 16px; }
-
-    /* ============================================
-       ARTICLES
-    ============================================ */
-    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
-    .article-card {
-      background: var(--white); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow); transition: all var(--transition); display: block;
-    }
-    .article-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-    .article-thumb { height: 190px; overflow: hidden; position: relative; }
-    .article-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .article-card:hover .article-thumb img { transform: scale(1.08); }
-    .article-thumb::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.25));
-    }
-    .article-card-body { padding: 24px; }
-    .article-card-body .tag {
-      display: inline-block; background: rgba(26,92,46,0.1);
-      color: var(--primary); padding: 3px 12px; border-radius: 6px;
-      font-size: 11px; font-weight: 700; margin-bottom: 10px;
-    }
-    .article-card-body h3 { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 10px; line-height: 1.5; }
-    .article-card-body p { font-size: 13px; color: var(--gray); line-height: 1.7; }
-    .article-card-body .read-more {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 14px; color: var(--primary); font-size: 13px; font-weight: 700;
-      transition: gap 0.3s;
-    }
-    .article-card:hover .read-more { gap: 12px; }
-
-    /* ============================================
-       FAQ
-    ============================================ */
-    .faq-list { max-width: 800px; margin: 0 auto; }
-    .faq-item { border-bottom: 1px solid var(--light-gray); overflow: hidden; }
-    .faq-question {
-      width: 100%; background: none; border: none; padding: 22px 0;
-      font-size: 16px; font-weight: 700; color: var(--dark); text-align: left;
-      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-      font-family: 'Noto Sans JP', sans-serif; transition: color 0.3s;
-    }
-    .faq-question:hover { color: var(--primary); }
-    .faq-question .arrow {
-      width: 32px; height: 32px; min-width: 32px; border-radius: 50%;
-      background: rgba(26,92,46,0.08); display: flex; align-items: center;
-      justify-content: center; font-size: 14px; transition: all 0.4s;
-      color: var(--primary);
-    }
-    .faq-item.active .faq-question .arrow {
-      transform: rotate(180deg); background: var(--primary); color: var(--white);
-    }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .faq-answer-inner { padding: 0 0 22px; font-size: 15px; color: var(--gray); line-height: 1.9; }
-    .faq-item.active .faq-answer { max-height: 400px; }
-
-    /* ============================================
-       CONTACT
-    ============================================ */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-    .contact-info h3 { font-size: 26px; font-weight: 800; color: var(--dark); margin-bottom: 24px; }
-    .contact-item { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 24px; }
-    .contact-icon {
-      width: 52px; height: 52px; min-width: 52px;
-      background: linear-gradient(135deg, rgba(26,92,46,0.1), rgba(26,92,46,0.05));
-      border-radius: 14px; display: flex; align-items: center;
-      justify-content: center; font-size: 22px; transition: all 0.3s;
-    }
-    .contact-item:hover .contact-icon { background: var(--primary); transform: scale(1.1); }
-    .contact-item:hover .contact-icon span { filter: brightness(10); }
-    .contact-item h4 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
-    .contact-item p { font-size: 14px; color: var(--gray); }
-    .contact-form {
-      background: var(--white); padding: 44px; border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .form-group { margin-bottom: 22px; position: relative; }
-    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-    .form-group input, .form-group textarea, .form-group select {
-      width: 100%; padding: 14px 18px; border: 2px solid #e8e8e8;
-      border-radius: 10px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif;
-      transition: all 0.3s; background: #fafafa;
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-      outline: none; border-color: var(--primary); background: var(--white);
-      box-shadow: 0 0 0 4px rgba(26,92,46,0.1);
-    }
-    .form-group input.error, .form-group textarea.error { border-color: #e74c3c; }
-    .form-group .error-msg { color: #e74c3c; font-size: 12px; margin-top: 4px; display: none; }
-    .form-group input.error ~ .error-msg { display: block; }
-    .form-group textarea { height: 130px; resize: vertical; }
-
-    /* ============================================
-       FOOTER
-    ============================================ */
-    footer { background: var(--dark); color: var(--white); padding: 70px 24px 30px; }
-    .footer-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px; margin-bottom: 48px;
-    }
-    .footer-brand p { font-size: 14px; opacity: 0.6; margin-top: 14px; line-height: 1.8; }
-    .footer-section h4 {
-      font-size: 13px; font-weight: 700; color: var(--gold);
-      margin-bottom: 18px; text-transform: uppercase; letter-spacing: 2px;
-    }
-    .footer-section ul li { margin-bottom: 10px; }
-    .footer-section ul li a { font-size: 14px; opacity: 0.6; transition: all 0.3s; }
-    .footer-section ul li a:hover { opacity: 1; color: var(--gold); padding-left: 4px; }
-    .social-links { display: flex; gap: 12px; margin-top: 20px; }
-    .social-links a {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: rgba(255,255,255,0.08); display: flex; align-items: center;
-      justify-content: center; font-size: 16px; transition: all 0.3s;
-    }
-    .social-links a:hover { background: var(--gold); color: var(--dark); transform: translateY(-3px); }
-    .footer-bottom {
-      max-width: 1200px; margin: 0 auto; padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 13px; opacity: 0.5;
-    }
-
-    /* ============================================
-       BACK TO TOP
-    ============================================ */
-    .back-to-top {
-      position: fixed; bottom: 32px; right: 32px; z-index: 999;
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--primary); color: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; cursor: pointer; border: none;
-      box-shadow: 0 4px 20px rgba(26,92,46,0.4);
-      opacity: 0; transform: translateY(20px);
-      transition: all 0.4s; pointer-events: none;
-    }
-    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .back-to-top:hover { background: var(--primary-light); transform: translateY(-4px); }
-    .back-to-top svg { width: 20px; height: 20px; }
-
-    /* ============================================
-       RESPONSIVE
-    ============================================ */
+    /* RESPONSIVE */
     @media (max-width: 960px) {
-      .problem-grid, .contact-grid { grid-template-columns: 1fr; }
-      .merit-grid { grid-template-columns: 1fr 1fr; }
-      .flow-steps { grid-template-columns: repeat(2, 1fr); }
-      .flow-connector { display: none; }
-      .program-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item.gallery-large { grid-column: span 2; }
-      .instructor-grid { grid-template-columns: 1fr 1fr; }
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 56px; }
+      .hero-inner { flex-direction: column; text-align: center; padding-top: 120px; }
+      .hero-desc { margin: 0 auto 8px; }
+      .hero-desc-sub { margin: 0 auto 36px; }
+      .hero-buttons { justify-content: center; }
+      .hero-right { display: none; }
+      .master-grid, .atelier-grid { grid-template-columns: 1fr; }
+      .adv-grid { grid-template-columns: 1fr 1fr; }
+      .about-title, .master-name, .atelier-title, .adv-title, .cta-title { font-size: 42px; }
+      .stats-row { gap: 50px; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
-      nav ul.nav-links {
-        display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(26,26,46,0.98); backdrop-filter: blur(12px);
-        flex-direction: column; padding: 100px 40px 40px; gap: 0;
-        justify-content: flex-start; z-index: 50;
-      }
+      :root { --section-pad: 80px; }
+      nav ul.nav-links { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.98); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; gap: 0; z-index: 50; }
       nav ul.nav-links.active { display: flex; }
-      nav ul.nav-links li a { display: block; padding: 16px 0; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      nav ul.nav-links li a { font-size: 24px; padding: 16px; }
       .hamburger { display: flex; }
-      .nav-cta { display: none; }
-      .hero h1 { font-size: 32px; }
-      .hero-stats { gap: 16px; }
-      .hero-stat { min-width: 130px; padding: 16px 20px; }
-      .hero-stat .number { font-size: 28px; }
-      .section { padding: 70px 20px; }
-      .section-header h2 { font-size: 28px; }
-      .merit-grid { grid-template-columns: 1fr; }
-      .flow-steps { grid-template-columns: 1fr 1fr; }
-      .program-card { flex-direction: column; }
-      .program-icon { width: 100%; height: 180px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      .articles-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item.gallery-large { grid-column: span 1; height: 220px; }
-      .instructor-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-card.featured { transform: none; }
+      .nav-lang { display: none; }
+      .hero h1 { font-size: 40px; }
+      .about-features { flex-direction: column; gap: 20px; }
+      .adv-grid { grid-template-columns: 1fr; }
+      .stats-row { flex-direction: column; gap: 40px; }
+      .stat-item .stat-num { font-size: 40px; }
+      .atelier-services { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     }
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 26px; }
-      .flow-steps { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 480px) { .hero h1 { font-size: 32px; } }
   </style>
 </head>
 <body>
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader">
-    <div class="preloader-logo">KEN'S <span>GOLF</span></div>
+    <div class="preloader-text">Ken's <span>Golf</span></div>
     <div class="preloader-bar"><div class="preloader-fill"></div></div>
   </div>
 
@@ -653,557 +252,205 @@
   <header id="header">
     <div class="nav-container">
       <a href="#" class="logo">
-        <div class="logo-icon">KG</div>
-        <div class="logo-text">KEN'S <span>GOLF</span></div>
+        <div class="logo-icon"></div>
+        <span>Ken's Golf</span>
       </a>
       <nav>
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home" data-nav>ホーム</a></li>
-          <li><a href="#dtv-intro" data-nav>DTVとは</a></li>
-          <li><a href="#flow" data-nav>ご利用の流れ</a></li>
-          <li><a href="#merit" data-nav>メリット</a></li>
-          <li><a href="#program" data-nav>プログラム</a></li>
-          <li><a href="#pricing" data-nav>料金</a></li>
-          <li><a href="#articles" data-nav>お役立ち情報</a></li>
-          <li><a href="#faq" data-nav>FAQ</a></li>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">Golf Academy</a></li>
+          <li><a href="#atelier">Repair Atelier</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <div class="nav-cta">
-        <a href="#contact" class="btn btn-gold">無料相談する</a>
+      <div class="nav-lang">
+        <a href="#" class="active">EN</a>
+        <a href="#">JP</a>
+        <a href="#">TH</a>
+        <a href="#">VN</a>
       </div>
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-bg-img" id="heroBg"></div>
-    <div class="hero-bg"></div>
-    <div class="hero-pattern"></div>
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-content">
-      <div class="hero-badge reveal">Destination Thailand Visa</div>
-      <h1 class="reveal stagger-1"><span class="highlight">ゴルフ</span>で叶える<br>タイ長期滞在</h1>
-      <p class="hero-lead reveal stagger-2">DTV（Destination Thailand Visa）対応のゴルフプログラムで、<br>バンコクでの新しいライフスタイルを始めませんか。</p>
-      <p class="reveal stagger-3">
-        KEN'S GOLFは、DTV申請に必要な入学許可書・受講証明書を発行する<br>
-        タイ政府認定の教育プログラムです。週1回のゴルフセミナーに参加しながら、<br>
-        温暖なバンコクでの長期滞在をお楽しみいただけます。
-      </p>
-      <div class="hero-buttons reveal stagger-4">
-        <a href="#contact" class="btn btn-gold btn-large">無料相談はこちら</a>
-        <a href="#flow" class="btn btn-outline btn-large">DTV取得の流れ</a>
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag" data-animate><span class="badge">EST. 2021</span> BANGKOK, THAILAND</div>
+        <h1 data-animate class="delay-1">MAST<br>ER<br>YOUR<br><span class="green">GAME</span></h1>
+        <p class="hero-desc" data-animate class="delay-2">Premium golf instruction and master-level club repair. <span class="highlight">No language barriers.</span></p>
+        <p class="hero-desc-sub" data-animate class="delay-3">On-site technical atelier. Four languages, one destination.</p>
+        <div class="hero-buttons" data-animate class="delay-4">
+          <a href="#about" class="btn btn-green btn-arrow">EXPLORE ACADEMY</a>
+          <a href="#atelier" class="btn btn-outline">REPAIR ATELIER</a>
+        </div>
       </div>
-      <div class="hero-stats reveal stagger-5">
-        <div class="hero-stat">
-          <span class="number" data-count="180">0</span>
-          <span class="label">日間滞在可能</span>
-        </div>
-        <div class="hero-stat">
-          <span class="number" data-count="50" data-suffix="+">0</span>
-          <span class="label">提携ゴルフ場</span>
-        </div>
-        <div class="hero-stat">
-          <span class="number" data-count="98" data-suffix="%">0</span>
-          <span class="label">お客様満足度</span>
-        </div>
-        <div class="hero-stat">
-          <span class="number" data-count="5">0</span>
-          <span class="label">年間有効期限</span>
+      <div class="hero-right" data-animate="right" class="delay-5">
+        <div class="global-access">
+          <div class="global-access-title">&#127760; GLOBAL ACCESS</div>
+          <div class="global-access-grid">
+            <span>English</span>
+            <span>Japanese</span>
+            <span>Thai</span>
+            <span>Vietnamese</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DTV INTRO -->
-  <section class="section" id="dtv-intro">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">About DTV</div>
-        <h2>タイに長期滞在したい、でも方法がわからない？</h2>
-        <p>DTV（Destination Thailand Visa）なら、ゴルフプログラムへの参加を通じてタイ長期滞在が実現できます。</p>
-      </div>
-      <div class="problem-grid">
-        <div class="problem-card reveal-left">
-          <h3>&#10060; こんなお悩みありませんか？</h3>
-          <ul>
-            <li>&#8226; タイに長期滞在したいけど、適切なビザが見つからない</li>
-            <li>&#8226; リタイアメントビザは条件が厳しくてハードルが高い</li>
-            <li>&#8226; ビザランを繰り返すのはもう疲れた</li>
-            <li>&#8226; タイでゴルフを楽しみながらのんびり暮らしたい</li>
-            <li>&#8226; ビザ申請の書類準備が面倒で何から始めればいいかわからない</li>
-          </ul>
-        </div>
-        <div class="solution-card reveal-right">
-          <h3>&#9989; KEN'S GOLF DTV プログラムで解決</h3>
-          <ul>
-            <li>&#8226; DTV申請に必要な入学許可書・セミナー概要書を発行</li>
-            <li>&#8226; 1回の入国で最長180日の滞在が可能</li>
-            <li>&#8226; 週1回のゴルフプログラムで充実したバンコク生活</li>
-            <li>&#8226; 日本語で書類準備から申請手続きまで丁寧にサポート</li>
-            <li>&#8226; 50以上の提携ゴルフ場でタイのゴルフライフを満喫</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Marquee Scene Strip -->
-      <div class="scene-strip-wrapper reveal">
-        <div class="scene-strip" id="sceneStrip">
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene1/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene2/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene3/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene4/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene5/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene6/520/320') center/cover no-repeat;"></div>
-          <!-- duplicated for seamless loop -->
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene1/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene2/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene3/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene4/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene5/520/320') center/cover no-repeat;"></div>
-          <div class="scene-item" style="background: url('https://picsum.photos/seed/kgscene6/520/320') center/cover no-repeat;"></div>
-        </div>
-      </div>
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item">PROFESSIONAL GOLF INSTRUCTION <span class="star">★</span></div>
+      <div class="marquee-item">MASTER CLUB REPAIR <span class="star">★</span></div>
+      <div class="marquee-item">PROFESSIONAL GOLF INSTRUCTION <span class="star">★</span></div>
+      <div class="marquee-item">MASTER CLUB REPAIR <span class="star">★</span></div>
+      <div class="marquee-item">PROFESSIONAL GOLF INSTRUCTION <span class="star">★</span></div>
+      <div class="marquee-item">MASTER CLUB REPAIR <span class="star">★</span></div>
+      <div class="marquee-item">PROFESSIONAL GOLF INSTRUCTION <span class="star">★</span></div>
+      <div class="marquee-item">MASTER CLUB REPAIR <span class="star">★</span></div>
     </div>
-  </section>
-
-  <!-- FLOW -->
-  <section class="section section-light" id="flow">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">How It Works</div>
-        <h2>DTV取得までの流れ</h2>
-        <p>お申し込みからタイ入国まで、シンプルな4ステップ。書類準備もしっかりサポートします。</p>
-      </div>
-      <div class="flow-steps">
-        <div class="flow-step reveal stagger-1">
-          <div class="flow-step-num">1</div>
-          <h3>無料相談・お申し込み</h3>
-          <p>LINE・メールでお気軽にご相談。ご希望のプランが決まったらお申し込みください。</p>
-          <div class="flow-connector"></div>
-        </div>
-        <div class="flow-step reveal stagger-2">
-          <div class="flow-step-num">2</div>
-          <h3>ビザ書類の発行</h3>
-          <p>DTV申請に必要な入学許可書、セミナースケジュール、受講証明書を発行します。</p>
-          <div class="flow-connector"></div>
-        </div>
-        <div class="flow-step reveal stagger-3">
-          <div class="flow-step-num">3</div>
-          <h3>大使館でDTV申請</h3>
-          <p>タイ大使館にてDTVビザを申請。必要書類のチェックリストもお渡しします。</p>
-          <div class="flow-connector"></div>
-        </div>
-        <div class="flow-step reveal stagger-4">
-          <div class="flow-step-num">4</div>
-          <h3>タイ入国・プログラム開始</h3>
-          <p>タイに入国後、毎週のゴルフプログラムに参加しながらバンコク生活をお楽しみください。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MERIT -->
-  <section class="section section-dark" id="merit">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Why Golf × DTV</div>
-        <h2>ゴルフでDTVを取るメリット</h2>
-        <p>教育・文化活動の中でも、ゴルフプログラムならではの魅力があります。</p>
-      </div>
-      <div class="merit-grid">
-        <div class="merit-card reveal stagger-1">
-          <span class="icon">&#127774;</span>
-          <h3>年中ベストシーズン</h3>
-          <p>タイは年間を通じて温暖。日本の冬でも半袖でラウンドできる最高のゴルフ環境です。</p>
-        </div>
-        <div class="merit-card reveal stagger-2">
-          <span class="icon">&#128176;</span>
-          <h3>コスパ抜群のゴルフ</h3>
-          <p>名門コースでも日本の約半額。キャディ付きで快適なラウンドが楽しめます。</p>
-        </div>
-        <div class="merit-card reveal stagger-3">
-          <span class="icon">&#128197;</span>
-          <h3>週1回でOK</h3>
-          <p>プログラムは週1回。残りの時間は観光・グルメ・ゴルフ三昧、自由にお過ごしいただけます。</p>
-        </div>
-        <div class="merit-card reveal stagger-4">
-          <span class="icon">&#128196;</span>
-          <h3>書類発行もおまかせ</h3>
-          <p>入学許可書・受講証明書など、DTV申請に必要な書類はすべてKEN'S GOLFが発行します。</p>
-        </div>
-        <div class="merit-card reveal stagger-5">
-          <span class="icon">&#127947;</span>
-          <h3>本格的なスキルアップ</h3>
-          <p>プロの指導で実際にゴルフも上達。滞在中にスコアアップを目指せます。</p>
-        </div>
-        <div class="merit-card reveal stagger-6">
-          <span class="icon">&#129309;</span>
-          <h3>日本語で安心</h3>
-          <p>相談・書類・プログラムすべて日本語対応。タイ語・英語が不安な方もご安心ください。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="section" id="gallery">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Gallery</div>
-        <h2>バンコクのゴルフライフを写真で</h2>
-        <p>プログラムやラウンドの様子、タイの美しいゴルフコースの風景をご紹介します。</p>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item gallery-large reveal-scale stagger-1" onclick="openLightbox(this)">
-          <img src="https://picsum.photos/seed/kggal1/800/500" alt="バンコク近郊の提携ゴルフ場" loading="lazy">
-          <div class="gallery-caption">バンコク近郊の提携ゴルフ場</div>
-        </div>
-        <div class="gallery-item reveal-scale stagger-2" onclick="openLightbox(this)">
-          <img src="https://picsum.photos/seed/kggal2/400/400" alt="レッスン風景" loading="lazy">
-          <div class="gallery-caption">レッスン風景</div>
-        </div>
-        <div class="gallery-item reveal-scale stagger-3" onclick="openLightbox(this)">
-          <img src="https://picsum.photos/seed/kggal3/400/400" alt="キャディ付きラウンド" loading="lazy">
-          <div class="gallery-caption">キャディ付きラウンド</div>
-        </div>
-        <div class="gallery-item reveal-scale stagger-4" onclick="openLightbox(this)">
-          <img src="https://picsum.photos/seed/kggal4/400/400" alt="インドアスタジオ" loading="lazy">
-          <div class="gallery-caption">トンロースタジオ</div>
-        </div>
-        <div class="gallery-item reveal-scale stagger-5" onclick="openLightbox(this)">
-          <img src="https://picsum.photos/seed/kggal5/400/400" alt="バンコクの街並み" loading="lazy">
-          <div class="gallery-caption">バンコクの街並み</div>
-        </div>
-        <div class="gallery-item gallery-large reveal-scale stagger-6" onclick="openLightbox(this)">
-          <img src="https://picsum.photos/seed/kggal6/800/500" alt="夕暮れのコースラウンド" loading="lazy">
-          <div class="gallery-caption">夕暮れのコースラウンド</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img src="" alt="" id="lightboxImg">
-    <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
   </div>
 
-  <!-- INSTRUCTOR -->
-  <section class="section section-light" id="instructor">
+  <!-- ABOUT -->
+  <section class="section section-white" id="about">
     <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Instructors</div>
-        <h2>講師紹介</h2>
-        <p>経験豊富なプロゴルファーが、あなたのゴルフと滞在をサポートします。</p>
+      <div class="section-label" data-animate>&#9889; ABOUT US</div>
+      <h2 class="about-title" data-animate class="delay-1">Next Level<br><span class="green">Golf</span></h2>
+      <div class="about-desc" data-animate class="delay-2">A modern hub for professional coaching and expert club repairs. We combine technical instruction with precision gear tuning for golfers who want to play their best.</div>
+      <div class="about-features" data-animate class="delay-3">
+        <div class="about-feature"><div class="ico">&#128100;</div> Professional Coaching</div>
+        <div class="about-feature"><div class="ico">&#128295;</div> Expert Club Repairs</div>
+        <div class="about-feature"><div class="ico">&#9881;</div> Precision Tuning</div>
       </div>
-      <div class="instructor-grid">
-        <div class="instructor-card reveal stagger-1">
-          <div class="instructor-photo">
-            <img src="https://picsum.photos/seed/kginst1/400/400" alt="Ken" loading="lazy">
-          </div>
-          <div class="instructor-info">
-            <h3>Ken</h3>
-            <div class="instructor-title">ヘッドプロ / PGA公認ティーチングプロ</div>
-            <p>バンコクでの指導歴15年。初心者から上級者まで幅広く指導。日本語・タイ語・英語堪能。</p>
-          </div>
+    </div>
+  </section>
+
+  <!-- THE MASTER -->
+  <section class="section section-dark" id="master">
+    <div class="container">
+      <div class="section-label" data-animate>THE MASTER</div>
+      <p style="color: var(--gray); font-size: 15px; margin-bottom: 48px;" data-animate class="delay-1">Precision coaching from a quadrilingual coach. Technical mastery meets cultural intelligence.</p>
+      <div class="master-grid">
+        <div class="master-photo" data-animate="left">
+          <img src="https://picsum.photos/seed/kgken/700/900" alt="Ken Sugiyama" loading="lazy">
+          <div class="master-photo-accent"></div>
         </div>
-        <div class="instructor-card reveal stagger-2">
-          <div class="instructor-photo">
-            <img src="https://picsum.photos/seed/kginst2/400/400" alt="山本 裕子" loading="lazy">
-          </div>
-          <div class="instructor-info">
-            <h3>山本 裕子</h3>
-            <div class="instructor-title">プロゴルファー / DTV申請アドバイザー</div>
-            <p>元LPGAツアー選手。女性ゴルファーの指導に定評あり。ビザ申請のサポートも担当。</p>
-          </div>
-        </div>
-        <div class="instructor-card reveal stagger-3">
-          <div class="instructor-photo">
-            <img src="https://picsum.photos/seed/kginst3/400/400" alt="Somchai P." loading="lazy">
-          </div>
-          <div class="instructor-info">
-            <h3>Somchai P.</h3>
-            <div class="instructor-title">アシスタントプロ / コースマネジメント専門</div>
-            <p>タイ国内トーナメント優勝経験。タイのゴルフ場を知り尽くした現地スタッフ。日本語対応可。</p>
-          </div>
+        <div data-animate="right">
+          <h3 class="master-name">Ken<br>Sugiyama</h3>
+          <div class="master-role">HEAD PRO</div>
+          <div class="master-detail-label">SPECIALIZATION</div>
+          <p class="master-detail-text">Multilingual golf coaching, international tournament preparation, cross-cultural golf etiquette, Japanese performance techniques, youth golf development, multi-market golf consultancy.</p>
+          <div class="master-detail-label">LANGUAGES</div>
+          <p class="master-detail-text">Japanese, English, Thai, Vietnamese</p>
+          <p class="master-bio">Ken Sugiyama is the driving force behind Ken's Golf. Born in Japan and raised in Thailand since the age of 2, Ken brings a unique international perspective to the game. He honed his professional skills at the prestigious Mizuho High School golf club in Ibaraki, Japan. To ensure a welcoming experience for everyone, Ken can speak 4 languages. His goal is to combine his training with a friendly, accessible approach for golfers of all backgrounds and levels.</p>
+          <div class="master-cta"><a href="#contact" class="link-arrow">BOOK SESSION →</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROGRAM -->
-  <section class="section" id="program">
+  <!-- ATELIER -->
+  <section class="section section-white" id="atelier">
     <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Program</div>
-        <h2>ゴルフプログラム</h2>
-        <p>レベルに合わせた4つのプログラム。DTV対応の週間プログラムとして毎週開催しています。</p>
-      </div>
-      <div class="program-grid">
-        <div class="program-card reveal stagger-1">
-          <div class="program-icon">
-            <img src="https://picsum.photos/seed/kgprog1/400/400" alt="スイング基礎" loading="lazy">
+      <div class="atelier-grid">
+        <div>
+          <div class="section-label" data-animate>&#128295; TECHNICAL ATELIER</div>
+          <h2 class="atelier-title" data-animate class="delay-1">Golf Club<br>Repair</h2>
+          <p class="atelier-desc" data-animate class="delay-2">Our on-site workshop isn't just a repair shop. It's a high-tech lab where data meets craftsmanship. From loft/lie adjustments to complete shaft optimization.</p>
+          <div class="atelier-services" data-animate class="delay-3">
+            <div class="atelier-service"><span class="ico">&#9881;</span> LOFT & LIE ADJUSTMENT</div>
+            <div class="atelier-service"><span class="ico">&#9881;</span> SHAFT PURING & SPINING</div>
+            <div class="atelier-service"><span class="ico">&#9881;</span> GRIP CUSTOMIZATION</div>
+            <div class="atelier-service"><span class="ico">&#9881;</span> SWING WEIGHT BALANCING</div>
           </div>
-          <div class="program-body">
-            <div class="sub">Basic Swing Program</div>
-            <h3>スイング基礎プログラム</h3>
-            <p>グリップ・スタンス・スイング軌道の基本を学ぶ初心者向け。インドアスタジオでの実践レッスン付き。月曜 9:00-12:00</p>
-          </div>
+          <a href="#contact" class="btn btn-green btn-arrow" data-animate class="delay-4">ENTER THE ATELIER</a>
         </div>
-        <div class="program-card reveal stagger-2">
-          <div class="program-icon">
-            <img src="https://picsum.photos/seed/kgprog2/400/400" alt="コースマネジメント" loading="lazy">
-          </div>
-          <div class="program-body">
-            <div class="sub">Course Management</div>
-            <h3>コースマネジメント実践</h3>
-            <p>実際のコースで戦略的プレーを学ぶ中級者向け。風の読み方、クラブ選択のコツを習得。木曜 7:00-12:00</p>
-          </div>
-        </div>
-        <div class="program-card reveal stagger-3">
-          <div class="program-icon">
-            <img src="https://picsum.photos/seed/kgprog3/400/400" alt="ショートゲーム" loading="lazy">
-          </div>
-          <div class="program-body">
-            <div class="sub">Short Game Workshop</div>
-            <h3>ショートゲームワークショップ</h3>
-            <p>アプローチ・バンカー・パッティングに特化。スコアに直結する100ヤード以内の技術を磨きます。水曜 9:00-13:00</p>
-          </div>
-        </div>
-        <div class="program-card reveal stagger-4">
-          <div class="program-icon">
-            <img src="https://picsum.photos/seed/kgprog4/400/400" alt="トーナメント準備" loading="lazy">
-          </div>
-          <div class="program-body">
-            <div class="sub">Tournament Preparation</div>
-            <h3>トーナメント準備プログラム</h3>
-            <p>競技志向の上級者向け総合プログラム。メンタル・フィジカル・ラウンド戦略を包括的に指導。土曜 7:00-13:00</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="section section-light" id="pricing">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Pricing</div>
-        <h2>料金プラン</h2>
-        <p>DTV申請対応のプランをご用意しています。</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="pricing-card reveal stagger-1">
-          <h3>お試しプラン</h3>
-          <div class="price">&#3647;3,500<span>/回</span></div>
-          <div class="price-note">まずは体験してみたい方に</div>
-          <ul class="pricing-features">
-            <li>1回のプログラム受講</li>
-            <li>選べる4コースから1つ</li>
-            <li>インドアスタジオ使用料込み</li>
-            <li>日本語テキスト付き</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="width: 100%;">相談する</a>
-        </div>
-        <div class="pricing-card featured reveal stagger-2">
-          <div class="pricing-badge">おすすめ</div>
-          <h3>DTV対応プラン</h3>
-          <div class="price">&#3647;12,000<span>/月</span></div>
-          <div class="price-note">DTV申請書類発行付き・週1回受講</div>
-          <ul class="pricing-features">
-            <li>月4回のプログラム受講（週1回）</li>
-            <li>全4コース受講可能</li>
-            <li>DTV用入学許可書・受講証明書発行</li>
-            <li>インドアスタジオ使用料込み</li>
-            <li>コースラウンド1回付き</li>
-            <li>LINE個別サポート</li>
-          </ul>
-          <a href="#contact" class="btn btn-gold" style="width: 100%;">無料相談する</a>
-        </div>
-        <div class="pricing-card reveal stagger-3">
-          <h3>プレミアムプラン</h3>
-          <div class="price">&#3647;25,000<span>/月</span></div>
-          <div class="price-note">ゴルフもビザも全力サポート</div>
-          <ul class="pricing-features">
-            <li>月8回のプログラム受講（週2回）</li>
-            <li>全4コース受講可能</li>
-            <li>DTV用入学許可書・受講証明書発行</li>
-            <li>コースラウンド3回付き</li>
-            <li>スイング動画分析</li>
-            <li>プロとのマンツーマンレッスン1回</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="width: 100%;">相談する</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARTICLES -->
-  <section class="section" id="articles">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Useful Info</div>
-        <h2>お役立ち情報</h2>
-        <p>DTVビザやタイ長期滞在に関する情報をまとめています。</p>
-      </div>
-      <div class="articles-grid">
-        <a href="articles/what-is-dtv.html" class="article-card reveal stagger-1">
-          <div class="article-thumb">
-            <img src="https://picsum.photos/seed/kgart1/700/400" alt="DTVとは" loading="lazy">
-          </div>
-          <div class="article-card-body">
-            <div class="tag">DTV基礎知識</div>
-            <h3>DTVとは？ Destination Thailand Visaを徹底解説</h3>
-            <p>2024年に新設されたDTVビザの概要、対象者、滞在期間、申請条件をわかりやすく解説します。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-        <a href="articles/why-golf-dtv.html" class="article-card reveal stagger-2">
-          <div class="article-thumb">
-            <img src="https://picsum.photos/seed/kgart2/700/400" alt="なぜゴルフでDTV" loading="lazy">
-          </div>
-          <div class="article-card-body">
-            <div class="tag">ゴルフ×DTV</div>
-            <h3>なぜゴルフでDTVを取るのか？他の方法との比較</h3>
-            <p>DTV対応の教育プログラムの中で、ゴルフを選ぶメリットと他の選択肢との違いを比較します。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-        <a href="articles/dtv-lifestyle.html" class="article-card reveal stagger-3">
-          <div class="article-thumb">
-            <img src="https://picsum.photos/seed/kgart3/700/400" alt="タイ生活ガイド" loading="lazy">
-          </div>
-          <div class="article-card-body">
-            <div class="tag">タイ生活</div>
-            <h3>DTV取得後のタイ生活ガイド｜滞在中にできること</h3>
-            <p>DTVでタイに長期滞在中の生活スタイル。ゴルフ以外の楽しみ方や生活コストもご紹介。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-        <a href="articles/dtv-application.html" class="article-card reveal stagger-4">
-          <div class="article-thumb">
-            <img src="https://picsum.photos/seed/kgart4/700/400" alt="申請の流れ" loading="lazy">
-          </div>
-          <div class="article-card-body">
-            <div class="tag">申請ガイド</div>
-            <h3>DTV申請の流れと必要書類まとめ</h3>
-            <p>DTV申請に必要な書類一覧、申請手順、よくある質問。準備から取得までをステップで解説。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-        <a href="articles/thailand-golf.html" class="article-card reveal stagger-5">
-          <div class="article-thumb">
-            <img src="https://picsum.photos/seed/kgart5/700/400" alt="タイゴルフ天国" loading="lazy">
-          </div>
-          <div class="article-card-body">
-            <div class="tag">タイゴルフ</div>
-            <h3>タイがゴルフ天国と呼ばれる5つの理由</h3>
-            <p>世界中のゴルファーがタイを訪れる理由。コスト、気候、コースの質、ホスピタリティの魅力を紹介。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section-light" id="faq">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">FAQ</div>
-        <h2>よくある質問</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item reveal stagger-1">
-          <button class="faq-question" onclick="toggleFaq(this)">DTVビザとは何ですか？<span class="arrow">▼</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">DTV（Destination Thailand Visa）は、タイ政府が2024年に新設した長期滞在ビザです。文化・教育活動への参加を目的とした滞在が認められており、1回の入国で最長180日の滞在が可能です。KEN'S GOLFのゴルフプログラムはDTV対応プログラムとして入学許可書を発行しています。</div></div>
-        </div>
-        <div class="faq-item reveal stagger-2">
-          <button class="faq-question" onclick="toggleFaq(this)">ゴルフ初心者でも申し込めますか？<span class="arrow">▼</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">はい、もちろんです。スイング基礎プログラムは完全な初心者の方を対象としています。クラブの握り方から丁寧に指導しますので、ゴルフ経験がなくても問題ありません。レンタルクラブも無料でご利用いただけます。</div></div>
-        </div>
-        <div class="faq-item reveal stagger-3">
-          <button class="faq-question" onclick="toggleFaq(this)">DTV申請のサポートはどこまでしてもらえますか？<span class="arrow">▼</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">入学許可書・プログラム概要書・受講証明書の発行、申請に必要な書類リストのご案内、書類の記入サポートまで対応しております。ビザ申請そのものはご自身でタイ大使館にて行っていただきますが、手続きの流れは丁寧にご説明します。</div></div>
-        </div>
-        <div class="faq-item reveal stagger-4">
-          <button class="faq-question" onclick="toggleFaq(this)">プログラムは週に何回参加する必要がありますか？<span class="arrow">▼</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">DTV対応プランでは週1回の参加が基本です。残りの時間はゴルフ、観光、グルメなど自由にお過ごしいただけます。もっとゴルフに集中したい方はプレミアムプラン（週2回）もございます。</div></div>
-        </div>
-        <div class="faq-item reveal stagger-5">
-          <button class="faq-question" onclick="toggleFaq(this)">DTV取得を保証してもらえますか？<span class="arrow">▼</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">ビザの発給はタイ大使館・入国管理局の判断となるため、取得を保証するものではございません。ただし、KEN'S GOLFではDTV申請に必要な書類をすべて発行し、申請手続きを丁寧にサポートいたします。これまで多くの方がスムーズにDTVを取得されています。</div></div>
-        </div>
-        <div class="faq-item reveal stagger-6">
-          <button class="faq-question" onclick="toggleFaq(this)">すべて日本語で対応してもらえますか？<span class="arrow">▼</span></button>
-          <div class="faq-answer"><div class="faq-answer-inner">はい、ご相談・書類発行・プログラムすべて日本語で対応しております。タイ語・英語が不安な方もご安心ください。</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Contact</div>
-        <h2>無料相談・お問い合わせ</h2>
-        <p>DTVビザやプログラムについて、お気軽にご連絡ください。</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info reveal-left">
-          <h3>KEN'S GOLF BANGKOK</h3>
-          <div class="contact-item">
-            <div class="contact-icon"><span>&#128205;</span></div>
-            <div><h4>所在地</h4><p>Premier Thonglor, 135/2 Thong Lo,<br>Khlongton-nua, Watthana, Bangkok 10110</p></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><span>&#128231;</span></div>
-            <div><h4>メール</h4><p>info@kensgolfbangkok.com</p></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><span>&#128242;</span></div>
-            <div><h4>LINE</h4><p>@kensgolf</p></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><span>&#128222;</span></div>
-            <div><h4>電話</h4><p>+66-81-903-3020</p></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><span>&#128337;</span></div>
-            <div><h4>営業時間</h4><p>月〜金 8:00 - 22:00 / 土日 8:00 - 18:00</p></div>
-          </div>
-        </div>
-        <div class="contact-form reveal-right" id="contactForm">
-          <form id="mainForm" novalidate>
-            <div class="form-group">
-              <label>お名前 <span style="color:#e74c3c">*</span></label>
-              <input type="text" placeholder="山田 太郎" required id="formName">
-              <div class="error-msg">お名前を入力してください</div>
+        <div class="atelier-photo" data-animate="right">
+          <img src="https://picsum.photos/seed/kgclubs/700/700" alt="Golf Club Repair" loading="lazy">
+          <div class="atelier-photo-card">
+            <div class="row">
+              <div><div class="stat-label">STATUS</div><div class="stat-value">Operational</div></div>
+              <div><div class="stat-label">IMPROVEMENT</div><div class="stat-value">Skills x10</div></div>
             </div>
-            <div class="form-group">
-              <label>メールアドレス <span style="color:#e74c3c">*</span></label>
-              <input type="email" placeholder="example@email.com" required id="formEmail">
-              <div class="error-msg">正しいメールアドレスを入力してください</div>
-            </div>
-            <div class="form-group">
-              <label>ご相談内容</label>
-              <select id="formSubject">
-                <option>DTVビザについて</option>
-                <option>プログラム内容について</option>
-                <option>料金・プランについて</option>
-                <option>その他</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>メッセージ</label>
-              <textarea placeholder="ご質問やご要望をご記入ください" id="formMessage"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">送信する</button>
-          </form>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section class="section section-dark" id="advantages">
+    <div class="container">
+      <h2 class="adv-title" data-animate>Our <span class="green">Advantages</span></h2>
+      <div class="adv-title-bar" data-animate></div>
+      <div style="height: 60px;"></div>
+      <div class="adv-grid">
+        <div class="adv-card" data-animate class="delay-1">
+          <div class="adv-card-img"><img src="https://picsum.photos/seed/kgadv1/600/400" alt="Elite Japanese Coaching" loading="lazy"><div class="adv-card-badge">&#9889;</div></div>
+          <div class="adv-card-body"><h3>Elite Japanese Coaching</h3><p>Immerse yourself in the precision and philosophy of Japanese golf. Our elite coaches bring traditional techniques and modern insights to refine your game.</p><a href="#" class="link-arrow">EXPLORE JAPANESE METHODS →</a></div>
+        </div>
+        <div class="adv-card" data-animate class="delay-2">
+          <div class="adv-card-img"><img src="https://picsum.photos/seed/kgadv2/600/400" alt="In-House Manufacturing" loading="lazy"><div class="adv-card-badge">&#9889;</div></div>
+          <div class="adv-card-body"><h3>In-House Manufacturing & Quality Control</h3><p>Our dedicated on-site workshop allows us to maintain stringent quality control standards and offer bespoke solutions tailored to your exact specifications.</p><a href="#" class="link-arrow">EXPLORE OUR CAPABILITIES →</a></div>
+        </div>
+        <div class="adv-card" data-animate class="delay-3">
+          <div class="adv-card-img"><img src="https://picsum.photos/seed/kgadv3/600/400" alt="Global Reach" loading="lazy"><div class="adv-card-badge">&#9889;</div></div>
+          <div class="adv-card-body"><h3>Global Reach with Multilingual Support</h3><p>We proudly serve a diverse international clientele with a team fluent in multiple languages, ensuring seamless communication and personalized support.</p><a href="#" class="link-arrow">CONTACT OUR TEAM →</a></div>
+        </div>
+        <div class="adv-card" data-animate class="delay-4">
+          <div class="adv-card-img"><img src="https://picsum.photos/seed/kgadv4/600/400" alt="Decades of Expertise" loading="lazy"><div class="adv-card-badge">&#9889;</div></div>
+          <div class="adv-card-body"><h3>Decades of Industry Expertise</h3><p>Benefit from the collective knowledge and innovative spirit of our seasoned professionals. Our team brings decades of experience to every project.</p><a href="#" class="link-arrow">MEET OUR EXPERTS →</a></div>
+        </div>
+        <div class="adv-card" data-animate class="delay-5">
+          <div class="adv-card-img"><img src="https://picsum.photos/seed/kgadv5/600/400" alt="Tournament Preparation" loading="lazy"><div class="adv-card-badge">&#9889;</div></div>
+          <div class="adv-card-body"><h3>Tournament Preparation</h3><p>Elevate your competitive edge with our specialized tournament preparation programs. Focus on strategy, mental resilience, and performance under pressure.</p><a href="#" class="link-arrow">PREPARE FOR VICTORY →</a></div>
+        </div>
+        <div class="adv-card" data-animate class="delay-6">
+          <div class="adv-card-img"><img src="https://picsum.photos/seed/kgadv6/600/400" alt="Expert Golf Consultancy" loading="lazy"><div class="adv-card-badge">&#9889;</div></div>
+          <div class="adv-card-body"><h3>Expert Golf Consultancy</h3><p>Receive personalized advice from industry experts on equipment selection, course management, and career development to optimize your golf journey.</p><a href="#" class="link-arrow">GET EXPERT ADVICE →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section-white" id="pricing">
+    <div class="stats-row">
+      <div class="stat-item" data-animate class="delay-1">
+        <div class="stat-icon">&#127760;</div>
+        <div class="stat-num" data-count="4">0</div>
+        <div class="stat-label">LANGUAGES</div>
+      </div>
+      <div class="stat-item" data-animate class="delay-2">
+        <div class="stat-icon">&#128100;</div>
+        <div class="stat-num">#1</div>
+        <div class="stat-label">COACHING</div>
+      </div>
+      <div class="stat-item" data-animate class="delay-3">
+        <div class="stat-icon">&#128295;</div>
+        <div class="stat-num">10X</div>
+        <div class="stat-label">SPEED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg" id="ctaBg"></div>
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+      <h2 class="cta-title" data-animate>Ready to<br><span class="green">Elevate?</span></h2>
+      <p class="cta-sub" data-animate class="delay-1">LINE us to start. We speak your language.</p>
+      <div class="cta-buttons" data-animate class="delay-2">
+        <a href="#" class="btn btn-green btn-arrow">BOOK VIA LINE</a>
+        <a href="#" class="btn btn-outline" style="color:#333;border-color:#999;">VIEW PRICING</a>
       </div>
     </div>
   </section>
@@ -1211,456 +458,214 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo" style="margin-bottom: 10px;">
-          <div class="logo-icon">KG</div>
-          <div class="logo-text">KEN'S <span>GOLF</span></div>
-        </div>
-        <p>ゴルフで叶えるタイ長期滞在。<br>DTV対応プログラムをバンコク・トンローで毎週開催中。</p>
-        <div class="social-links">
+      <div>
+        <div class="footer-brand">Ken's Golf</div>
+        <p class="footer-brand-desc">Premium golf instruction and master-level club repair. Multilingual service in English, Japanese, Thai, and Vietnamese.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LINE">&#128172;</a>
           <a href="#" aria-label="Instagram">&#128247;</a>
           <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="LINE">&#128172;</a>
-          <a href="#" aria-label="Email">&#9993;</a>
         </div>
       </div>
-      <div class="footer-section">
-        <h4>DTV情報</h4>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
         <ul>
-          <li><a href="articles/what-is-dtv.html">DTVとは</a></li>
-          <li><a href="articles/why-golf-dtv.html">ゴルフ×DTV</a></li>
-          <li><a href="articles/dtv-application.html">申請の流れ</a></li>
-          <li><a href="articles/dtv-lifestyle.html">タイ生活ガイド</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Golf Academy</a></li>
+          <li><a href="#atelier">Repair Atelier</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h4>プログラム</h4>
+      <div class="footer-col">
+        <h4>Our Services</h4>
         <ul>
-          <li><a href="#program">プログラム内容</a></li>
-          <li><a href="#pricing">料金プラン</a></li>
-          <li><a href="#faq">よくある質問</a></li>
-          <li><a href="articles/thailand-golf.html">タイのゴルフ事情</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>サポート</h4>
-        <ul>
-          <li><a href="#contact">お問い合わせ</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">利用規約</a></li>
-          <li><a href="#">特定商取引法に基づく表記</a></li>
+          <li><a href="#">Performance Coaching</a></li>
+          <li><a href="#">Japanese Golf Fundamentals</a></li>
+          <li><a href="#">Club Fitting & Repair</a></li>
+          <li><a href="#">Technical Adjustments</a></li>
+          <li><a href="#">Multilingual Instruction</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 KEN'S GOLF BANGKOK. All rights reserved.</p>
-      <p>Thonglor, Bangkok, Thailand</p>
+      <span>&copy; 2026 Ken's Golf. All rights reserved.</span>
+      <div class="footer-langs"><span>EN</span> · <span>JP</span> · <span>TH</span> · <span>VN</span></div>
     </div>
   </footer>
 
   <!-- BACK TO TOP -->
-  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-  </button>
+  <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
   <!-- ============================================
-       JAVASCRIPT - 技術力アピール
+       JAVASCRIPT
   ============================================ -->
   <script>
     'use strict';
 
-    /* =============================================
-       1. PRELOADER
-    ============================================= */
+    /* 1. PRELOADER */
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').classList.add('hidden');
-        // Trigger hero animations after preloader
-        setTimeout(() => initHeroAnimations(), 300);
+        setTimeout(triggerHeroAnimations, 200);
       }, 1800);
     });
 
-    /* =============================================
-       2. SCROLL PROGRESS BAR
-    ============================================= */
-    const scrollProgress = document.getElementById('scrollProgress');
-    function updateScrollProgress() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      scrollProgress.style.width = progress + '%';
+    /* 2. SCROLL PROGRESS */
+    function updateProgress() {
+      const s = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+      document.getElementById('scrollProgress').style.width = (s / h * 100) + '%';
     }
 
-    /* =============================================
-       3. HEADER SCROLL EFFECT
-    ============================================= */
-    const header = document.getElementById('header');
+    /* 3. HEADER */
     function updateHeader() {
-      header.classList.toggle('scrolled', window.scrollY > 80);
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
     }
 
-    /* =============================================
-       4. ACTIVE NAV HIGHLIGHTING
-    ============================================= */
-    const navLinks = document.querySelectorAll('[data-nav]');
-    const sections = document.querySelectorAll('section[id]');
-    function updateActiveNav() {
-      const scrollY = window.scrollY + 200;
-      sections.forEach(section => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        const id = section.getAttribute('id');
-        if (scrollY >= top && scrollY < top + height) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + id) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
+    /* 4. BACK TO TOP */
+    function updateBackTop() {
+      document.getElementById('backTop').classList.toggle('show', window.scrollY > 500);
     }
 
-    /* =============================================
-       5. BACK TO TOP BUTTON
-    ============================================= */
-    const backToTop = document.getElementById('backToTop');
-    function updateBackToTop() {
-      backToTop.classList.toggle('visible', window.scrollY > 600);
-    }
-
-    /* =============================================
-       6. HERO PARALLAX
-    ============================================= */
+    /* 5. PARALLAX */
     const heroBg = document.getElementById('heroBg');
+    const ctaBg = document.getElementById('ctaBg');
     function updateParallax() {
-      if (window.scrollY < window.innerHeight) {
-        const offset = window.scrollY * 0.4;
-        heroBg.style.transform = `scale(1.1) translateY(${offset}px)`;
+      if (window.scrollY < window.innerHeight * 1.2) {
+        heroBg.style.transform = 'scale(1.1) translateY(' + (window.scrollY * 0.3) + 'px)';
       }
     }
 
-    /* =============================================
-       COMBINED SCROLL HANDLER (performance)
-    ============================================= */
+    /* COMBINED SCROLL */
     let ticking = false;
     window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          updateScrollProgress();
-          updateHeader();
-          updateActiveNav();
-          updateBackToTop();
-          updateParallax();
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (!ticking) { requestAnimationFrame(() => { updateProgress(); updateHeader(); updateBackTop(); updateParallax(); ticking = false; }); ticking = true; }
     });
 
-    /* =============================================
-       7. INTERSECTION OBSERVER - Scroll Animations
-    ============================================= */
-    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // Counter animation trigger
-          if (entry.target.querySelector('[data-count]')) {
-            animateCounters(entry.target);
-          }
-          revealObserver.unobserve(entry.target);
+    /* 6. INTERSECTION OBSERVER */
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          const counter = e.target.querySelector('[data-count]');
+          if (counter) animateCounter(counter);
+          obs.unobserve(e.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
 
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-      revealObserver.observe(el);
-    });
-
-    /* =============================================
-       8. COUNTER ANIMATION
-    ============================================= */
-    function animateCounters(container) {
-      const counters = container.querySelectorAll('[data-count]');
-      counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-count'));
-        const suffix = counter.getAttribute('data-suffix') || '';
-        const duration = 2000;
-        const start = performance.now();
-
-        function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
-
-        function update(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const value = Math.floor(easeOutQuart(progress) * target);
-          counter.textContent = value.toLocaleString() + suffix;
-          if (progress < 1) requestAnimationFrame(update);
-        }
-        requestAnimationFrame(update);
-      });
+    /* 7. HERO ANIMATIONS */
+    function triggerHeroAnimations() {
+      document.querySelectorAll('.hero [data-animate]').forEach(el => el.classList.add('is-visible'));
     }
 
-    /* =============================================
-       9. HERO CANVAS PARTICLES
-    ============================================= */
-    function initHeroCanvas() {
-      const canvas = document.getElementById('hero-canvas');
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-      const particleCount = 50;
-
-      function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+    /* 8. COUNTER ANIMATION */
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count);
+      const duration = 2000, start = performance.now();
+      function ease(t) { return 1 - Math.pow(1 - t, 4); }
+      function update(now) {
+        const p = Math.min((now - start) / duration, 1);
+        el.textContent = Math.floor(ease(p) * target);
+        if (p < 1) requestAnimationFrame(update);
       }
-      resize();
-      window.addEventListener('resize', resize);
+      requestAnimationFrame(update);
+    }
 
-      class Particle {
+    /* 9. CANVAS PARTICLES */
+    (() => {
+      const c = document.getElementById('heroCanvas'), ctx = c.getContext('2d');
+      let particles = [];
+      function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
+      resize(); window.addEventListener('resize', resize);
+      class P {
         constructor() { this.reset(); }
         reset() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-          this.size = Math.random() * 2 + 0.5;
-          this.speedX = (Math.random() - 0.5) * 0.5;
-          this.speedY = (Math.random() - 0.5) * 0.5;
-          this.opacity = Math.random() * 0.5 + 0.1;
-          this.fadeSpeed = Math.random() * 0.005 + 0.002;
-          this.growing = Math.random() > 0.5;
+          this.x = Math.random() * c.width; this.y = Math.random() * c.height;
+          this.s = Math.random() * 1.5 + 0.5; this.vx = (Math.random() - 0.5) * 0.4;
+          this.vy = (Math.random() - 0.5) * 0.4; this.o = Math.random() * 0.4 + 0.1;
+          this.fo = Math.random() * 0.004 + 0.002; this.g = Math.random() > 0.5;
         }
         update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          if (this.growing) {
-            this.opacity += this.fadeSpeed;
-            if (this.opacity >= 0.6) this.growing = false;
-          } else {
-            this.opacity -= this.fadeSpeed;
-            if (this.opacity <= 0.05) this.growing = true;
-          }
-          if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+          this.x += this.vx; this.y += this.vy;
+          this.o += this.g ? this.fo : -this.fo;
+          if (this.o >= 0.5) this.g = false; if (this.o <= 0.05) this.g = true;
+          if (this.x < 0 || this.x > c.width || this.y < 0 || this.y > c.height) this.reset();
         }
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(201,168,76,${this.opacity})`;
-          ctx.fill();
-        }
+        draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2); ctx.fillStyle = 'rgba(44,180,65,' + this.o + ')'; ctx.fill(); }
       }
-
-      for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < 40; i++) particles.push(new P());
+      function loop() {
+        ctx.clearRect(0, 0, c.width, c.height);
         particles.forEach(p => { p.update(); p.draw(); });
-
-        // Draw connections
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 120) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(201,168,76,${0.08 * (1 - dist / 120)})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
+        for (let i = 0; i < particles.length; i++) for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y, d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 140) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = 'rgba(44,180,65,' + (0.06 * (1 - d / 140)) + ')'; ctx.lineWidth = 0.5; ctx.stroke(); }
         }
-        requestAnimationFrame(animate);
+        requestAnimationFrame(loop);
       }
-      animate();
-    }
-    initHeroCanvas();
+      loop();
+    })();
 
-    /* =============================================
-       10. HERO ANIMATIONS (after preloader)
-    ============================================= */
-    function initHeroAnimations() {
-      document.querySelectorAll('.hero .reveal, .hero .reveal-left, .hero .reveal-right').forEach(el => {
-        el.classList.add('visible');
-      });
-    }
+    /* 10. HAMBURGER */
+    const ham = document.getElementById('hamburger'), navEl = document.getElementById('navLinks');
+    ham.addEventListener('click', () => { ham.classList.toggle('open'); navEl.classList.toggle('active'); });
+    navEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); navEl.classList.remove('active'); }));
 
-    /* =============================================
-       11. HAMBURGER MENU
-    ============================================= */
-    const hamburger = document.getElementById('hamburger');
-    const navLinksEl = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinksEl.classList.toggle('active');
-    });
-    // Close menu on link click
-    navLinksEl.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinksEl.classList.remove('active');
-      });
-    });
-
-    /* =============================================
-       12. FAQ TOGGLE
-    ============================================= */
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const wasActive = item.classList.contains('active');
-      // Close all other items
-      document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
-      if (!wasActive) item.classList.add('active');
-    }
-
-    /* =============================================
-       13. GALLERY LIGHTBOX
-    ============================================= */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-
-    function openLightbox(el) {
-      const img = el.querySelector('img');
-      if (!img) return;
-      // Use higher res version
-      const src = img.src.replace(/\/\d+\/\d+$/, '/1200/800');
-      lightboxImg.src = src;
-      lightboxImg.alt = img.alt;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
-    });
-
-    /* =============================================
-       14. FORM VALIDATION
-    ============================================= */
-    const mainForm = document.getElementById('mainForm');
-    mainForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      let valid = true;
-      const name = document.getElementById('formName');
-      const email = document.getElementById('formEmail');
-
-      // Reset
-      name.classList.remove('error');
-      email.classList.remove('error');
-
-      if (!name.value.trim()) { name.classList.add('error'); valid = false; name.focus(); }
-      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        email.classList.add('error'); valid = false;
-        if (valid) email.focus();
-      }
-
-      if (valid) {
-        const btn = mainForm.querySelector('button[type="submit"]');
-        btn.textContent = '送信中...';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.textContent = '✓ 送信完了';
-          btn.style.background = '#2e8b57';
-          setTimeout(() => {
-            btn.textContent = '送信する';
-            btn.style.background = '';
-            btn.disabled = false;
-            mainForm.reset();
-          }, 2500);
-        }, 1500);
-      }
-    });
-
-    // Real-time validation
-    ['formName', 'formEmail'].forEach(id => {
-      document.getElementById(id).addEventListener('input', function() {
-        this.classList.remove('error');
-      });
-    });
-
-    /* =============================================
-       15. SMOOTH SCROLL (enhanced)
-    ============================================= */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+    /* 11. SMOOTH SCROLL */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = 80;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) window.scrollTo({ top: t.offsetTop - 72, behavior: 'smooth' });
+      });
+    });
+
+    /* 12. TILT ON CARDS */
+    if (window.matchMedia('(hover:hover)').matches) {
+      document.querySelectorAll('.adv-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+          const r = this.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+          const rx = (y - r.height / 2) / r.height * -6, ry = (x - r.width / 2) / r.width * 6;
+          this.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-8px)';
+        });
+        card.addEventListener('mouseleave', function() { this.style.transform = ''; });
+      });
+    }
+
+    /* 13. MAGNETIC BUTTONS */
+    if (window.matchMedia('(hover:hover)').matches) {
+      document.querySelectorAll('.btn-green').forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+          const r = this.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+          this.style.transform = 'translate(' + (x * 0.12) + 'px,' + (y * 0.12) + 'px) translateY(-2px)';
+        });
+        btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
+      });
+    }
+
+    /* 14. IMAGE LAZY FADE */
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.style.opacity = '0'; img.style.transition = 'opacity 0.6s';
+      if (img.complete) { img.style.opacity = '1'; } else { img.addEventListener('load', () => { img.style.opacity = '1'; }); }
+    });
+
+    /* 15. ACTIVE NAV */
+    const navAs = document.querySelectorAll('.nav-links a');
+    const sects = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY + 200;
+      sects.forEach(s => {
+        if (sy >= s.offsetTop && sy < s.offsetTop + s.offsetHeight) {
+          navAs.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + s.id); });
         }
       });
     });
 
-    /* =============================================
-       16. TILT EFFECT ON CARDS
-    ============================================= */
-    if (window.matchMedia('(hover: hover)').matches) {
-      document.querySelectorAll('.merit-card, .pricing-card, .flow-step').forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-          const rect = this.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = (y - centerY) / centerY * -4;
-          const rotateY = (x - centerX) / centerX * 4;
-          this.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        });
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = '';
-        });
-      });
-    }
-
-    /* =============================================
-       17. MAGNETIC BUTTONS
-    ============================================= */
-    if (window.matchMedia('(hover: hover)').matches) {
-      document.querySelectorAll('.btn-gold, .btn-primary').forEach(btn => {
-        btn.addEventListener('mousemove', function(e) {
-          const rect = this.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          this.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-3px)`;
-        });
-        btn.addEventListener('mouseleave', function() {
-          this.style.transform = '';
-        });
-      });
-    }
-
-    /* =============================================
-       18. IMAGE LAZY LOADING with Fade
-    ============================================= */
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    lazyImages.forEach(img => {
-      img.style.opacity = '0';
-      img.style.transition = 'opacity 0.6s ease';
-      if (img.complete) {
-        img.style.opacity = '1';
-      } else {
-        img.addEventListener('load', () => { img.style.opacity = '1'; });
-      }
-    });
-
-    /* =============================================
-       19. CONSOLE EASTER EGG
-    ============================================= */
-    console.log(
-      '%c⛳ KEN\'S GOLF BANGKOK %c Built with ❤️ and JavaScript ',
-      'background: #1a5c2e; color: #c9a84c; font-size: 16px; padding: 8px 12px; font-weight: bold; border-radius: 4px 0 0 4px;',
-      'background: #c9a84c; color: #1a1a2e; font-size: 16px; padding: 8px 12px; font-weight: bold; border-radius: 0 4px 4px 0;'
-    );
+    /* 16. CONSOLE */
+    console.log('%c⛳ Ken\'s Golf Bangkok %c Built with passion & JavaScript ', 'background:#2CB441;color:#000;font-size:14px;padding:6px 10px;font-weight:bold;border-radius:4px 0 0 4px;', 'background:#111;color:#2CB441;font-size:14px;padding:6px 10px;font-weight:bold;border-radius:0 4px 4px 0;');
   </script>
 
 </body>
