@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FUJI GOLF ACADEMY | ゴルフで叶えるタイ長期滞在 DTV対応プログラム</title>
+  <meta name="description" content="DTVビザでタイに長期滞在しませんか？FUJI GOLF ACADEMYのゴルフセミナーはDTV申請対応。ビザ書類発行からゴルフライフまでトータルサポート。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', 'Montserrat', sans-serif; color: #333; background: #fff; line-height: 1.8; font-size: 16px; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    :root {
+      --navy: #2a3891; --navy-dark: #1e2a6a; --gold: #d5cd27; --gold-light: #e8e24a;
+      --white: #ffffff; --light-bg: #f7f7f7; --gray: #666; --light-gray: #e0e0e0; --green-accent: #2e8b57;
+    }
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(42,56,145,0.95); backdrop-filter: blur(8px); box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { width: 44px; height: 44px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: var(--navy); }
+    .logo-text { color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 1px; }
+    .logo-text span { color: var(--gold); }
+    nav ul { display: flex; gap: 28px; align-items: center; }
+    nav ul li a { color: var(--white); font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s; padding: 8px 0; }
+    nav ul li a:hover { color: var(--gold); }
+    .nav-cta { display: flex; gap: 10px; }
+    .btn { display: inline-block; padding: 10px 24px; border-radius: 6px; font-size: 14px; font-weight: 700; transition: all 0.3s; cursor: pointer; border: none; text-align: center; }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(213,205,39,0.4); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+    .btn-outline:hover { background: var(--white); color: var(--navy); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--navy-dark); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(42,56,145,0.4); }
+    .btn-large { padding: 14px 36px; font-size: 16px; border-radius: 8px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+    .hamburger span { display: block; width: 26px; height: 3px; background: var(--white); border-radius: 2px; }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); overflow: hidden; }
+    .hero-bg-img { position: absolute; inset: 0; background: url('https://picsum.photos/seed/thaigolf/1920/1080') center/cover no-repeat; z-index: 0; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,56,145,0.88) 0%, rgba(30,42,106,0.78) 50%, rgba(46,139,87,0.7) 100%); z-index: 1; }
+    .hero-pattern { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(213,205,39,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%); z-index: 2; }
+    .hero-content { position: relative; z-index: 3; max-width: 860px; padding: 0 20px; }
+    .hero-badge { display: inline-block; background: rgba(213,205,39,0.2); border: 1px solid var(--gold); color: var(--gold); padding: 6px 20px; border-radius: 30px; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; text-transform: uppercase; }
+    .hero h1 { font-size: 46px; font-weight: 900; line-height: 1.35; margin-bottom: 20px; }
+    .hero h1 .highlight { color: var(--gold); }
+    .hero .hero-lead { font-size: 20px; line-height: 1.8; margin-bottom: 12px; font-weight: 700; }
+    .hero p { font-size: 16px; line-height: 1.8; margin-bottom: 36px; opacity: 0.9; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-points { margin-top: 50px; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+    .hero-point { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 20px 24px; text-align: center; min-width: 180px; }
+    .hero-point .icon { font-size: 32px; margin-bottom: 8px; }
+    .hero-point .text { font-size: 14px; font-weight: 700; }
+
+    /* SECTION COMMON */
+    .section { padding: 80px 20px; }
+    .section-light { background: var(--light-bg); }
+    .section-navy { background: var(--navy); color: var(--white); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-label { display: inline-block; background: rgba(42,56,145,0.1); color: var(--navy); padding: 4px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .section-navy .section-label { background: rgba(213,205,39,0.2); color: var(--gold); }
+    .section-header h2 { font-size: 36px; font-weight: 900; color: var(--navy); margin-bottom: 16px; }
+    .section-navy .section-header h2 { color: var(--white); }
+    .section-header p { font-size: 16px; color: var(--gray); max-width: 650px; margin: 0 auto; }
+    .section-navy .section-header p { color: rgba(255,255,255,0.8); }
+
+    /* PROBLEM-SOLUTION (DTV導入) */
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+    .problem-card, .solution-card { padding: 40px; border-radius: 16px; }
+    .problem-card { background: #fef3f3; border: 2px solid #f5c6c6; }
+    .problem-card h3 { color: #c0392b; font-size: 20px; margin-bottom: 16px; }
+    .solution-card { background: #eef7f1; border: 2px solid #a8ddb5; }
+    .solution-card h3 { color: var(--green-accent); font-size: 20px; margin-bottom: 16px; }
+    .problem-card ul li, .solution-card ul li { font-size: 15px; padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; }
+
+    /* SCENE STRIP */
+    .scene-strip { display: flex; gap: 12px; margin-top: 48px; overflow: hidden; border-radius: 12px; }
+    .scene-item { flex: 1; height: 140px; border-radius: 8px; min-width: 0; }
+
+    /* FLOW */
+    .flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+    .flow-step { text-align: center; padding: 32px 20px; background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: relative; }
+    .flow-step-num { width: 56px; height: 56px; background: var(--navy); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat'; font-size: 22px; font-weight: 800; margin: 0 auto 16px; }
+    .flow-step h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .flow-step p { font-size: 13px; color: var(--gray); }
+    .flow-arrow { display: none; }
+
+    /* MERIT CARDS */
+    .merit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .merit-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 36px 24px; text-align: center; transition: transform 0.3s; }
+    .merit-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.12); }
+    .merit-card .icon { font-size: 48px; margin-bottom: 16px; }
+    .merit-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--gold); }
+    .merit-card p { font-size: 14px; opacity: 0.85; line-height: 1.7; }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .gallery-item { height: 220px; border-radius: 12px; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item.gallery-large { grid-column: span 2; height: 260px; }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: var(--white); font-size: 13px; font-weight: 600; }
+
+    /* INSTRUCTOR */
+    .instructor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .instructor-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s; }
+    .instructor-card:hover { transform: translateY(-4px); }
+    .instructor-photo { height: 280px; background-color: #ddd; }
+    .instructor-info { padding: 24px; }
+    .instructor-info h3 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .instructor-title { color: var(--gold); font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+    .instructor-info p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+    /* PROGRAM (コース) */
+    .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .program-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; display: flex; }
+    .program-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .program-icon { width: 120px; min-width: 120px; display: flex; align-items: center; justify-content: center; font-size: 48px; background-size: cover; background-position: center; }
+    .program-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .program-body { padding: 24px; flex: 1; }
+    .program-body h3 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .program-body .sub { color: var(--gold); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .program-body p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 960px; margin: 0 auto; }
+    .pricing-card { background: var(--white); border-radius: 16px; padding: 40px 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; position: relative; border: 2px solid transparent; transition: transform 0.3s; }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.featured { border-color: var(--gold); }
+    .pricing-card.featured::before { content: 'おすすめ'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy); padding: 4px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+    .pricing-card h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .pricing-card .price { font-family: 'Montserrat'; font-size: 42px; font-weight: 800; color: var(--navy); margin: 16px 0; }
+    .pricing-card .price span { font-size: 16px; font-weight: 500; color: var(--gray); }
+    .pricing-card .price-note { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+    .pricing-features { text-align: left; margin-bottom: 24px; }
+    .pricing-features li { padding: 8px 0; font-size: 14px; color: var(--gray); display: flex; align-items: center; gap: 8px; }
+    .pricing-features li::before { content: '●'; color: var(--gold); font-size: 8px; }
+
+    /* ARTICLES */
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+    .article-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s; display: block; }
+    .article-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .article-thumb { height: 180px; background-size: cover; background-position: center; position: relative; }
+    .article-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3)); }
+    .article-card-body { padding: 24px; }
+    .article-card-body .tag { display: inline-block; background: rgba(42,56,145,0.1); color: var(--navy); padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+    .article-card-body h3 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 8px; line-height: 1.5; }
+    .article-card-body p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+    .article-card-body .read-more { display: inline-block; margin-top: 12px; color: var(--navy); font-size: 13px; font-weight: 700; }
+    .article-card-body .read-more:hover { color: var(--gold); }
+
+    /* FAQ */
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--light-gray); }
+    .faq-question { width: 100%; background: none; border: none; padding: 20px 0; font-size: 16px; font-weight: 700; color: var(--navy); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Noto Sans JP', sans-serif; transition: color 0.3s; }
+    .faq-question:hover { color: var(--gold); }
+    .faq-question .arrow { font-size: 20px; transition: transform 0.3s; color: var(--gold); }
+    .faq-item.active .faq-question .arrow { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-answer-inner { padding: 0 0 20px; font-size: 14px; color: var(--gray); line-height: 1.8; }
+    .faq-item.active .faq-answer { max-height: 300px; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .contact-info h3 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 20px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+    .contact-icon { width: 48px; height: 48px; min-width: 48px; background: rgba(42,56,145,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .contact-item h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .contact-item p { font-size: 14px; color: var(--gray); }
+    .contact-form { background: var(--white); padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 16px; border: 2px solid var(--light-gray); border-radius: 8px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; transition: border-color 0.3s; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--navy); }
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    /* FOOTER */
+    footer { background: var(--navy-dark); color: var(--white); padding: 60px 20px 30px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand p { font-size: 14px; opacity: 0.7; margin-top: 12px; line-height: 1.7; }
+    .footer-section h4 { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-section ul li { margin-bottom: 8px; }
+    .footer-section ul li a { font-size: 14px; opacity: 0.7; transition: opacity 0.3s; }
+    .footer-section ul li a:hover { opacity: 1; color: var(--gold); }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 13px; opacity: 0.6; }
+    .social-links { display: flex; gap: 16px; }
+    .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: background 0.3s; }
+    .social-links a:hover { background: var(--gold); color: var(--navy); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .problem-grid, .contact-grid { grid-template-columns: 1fr; }
+      .merit-grid { grid-template-columns: 1fr 1fr; }
+      .flow-steps { grid-template-columns: repeat(2, 1fr); }
+      .program-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.gallery-large { grid-column: span 2; }
+      .instructor-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav ul.nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--navy); flex-direction: column; padding: 20px; gap: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+      nav ul.nav-links.active { display: flex; }
+      nav ul.nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .hero h1 { font-size: 30px; }
+      .hero-points { gap: 16px; }
+      .hero-point { min-width: 140px; padding: 14px 16px; }
+      .section-header h2 { font-size: 28px; }
+      .merit-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr 1fr; }
+      .program-card { flex-direction: column; }
+      .program-icon { width: 100%; height: 160px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .articles-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.gallery-large { grid-column: span 1; }
+      .instructor-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 24px; }
+      .flow-steps { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">FG</div>
+        <div class="logo-text">FUJI GOLF <span>ACADEMY</span></div>
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">ホーム</a></li>
+          <li><a href="#dtv-intro">DTVとは</a></li>
+          <li><a href="#flow">ご利用の流れ</a></li>
+          <li><a href="#merit">メリット</a></li>
+          <li><a href="#program">プログラム</a></li>
+          <li><a href="#pricing">料金</a></li>
+          <li><a href="#articles">お役立ち情報</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-gold">無料相談する</a>
+      </div>
+      <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home" style="margin-top: 70px;">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Destination Thailand Visa</div>
+      <h1><span class="highlight">ゴルフ</span>で叶える<br>タイ長期滞在</h1>
+      <p class="hero-lead">DTV（Destination Thailand Visa）対応のゴルフセミナーで、<br>タイでの新しいライフスタイルを始めませんか。</p>
+      <p>
+        当アカデミーは、DTV申請に必要な入学許可書・受講証明書を発行する<br>
+        タイ政府認定の教育プログラムです。週1回のゴルフセミナーに参加しながら、<br>
+        温暖なタイでの長期滞在をお楽しみいただけます。
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-gold btn-large">無料相談はこちら</a>
+        <a href="#flow" class="btn btn-outline btn-large">DTV取得の流れ</a>
+      </div>
+      <div class="hero-points">
+        <div class="hero-point">
+          <div class="icon">&#128196;</div>
+          <div class="text">ビザ書類発行対応</div>
+        </div>
+        <div class="hero-point">
+          <div class="icon">&#9971;</div>
+          <div class="text">週1回のゴルフセミナー</div>
+        </div>
+        <div class="hero-point">
+          <div class="icon">&#127470;&#127477;</div>
+          <div class="text">日本語完全対応</div>
+        </div>
+        <div class="hero-point">
+          <div class="icon">&#128692;</div>
+          <div class="text">最長180日滞在可能</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DTV INTRO (問題提起 → 解決策) -->
+  <section class="section" id="dtv-intro">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">About DTV</div>
+        <h2>タイに長期滞在したい、でも方法がわからない？</h2>
+        <p>DTV（Destination Thailand Visa）なら、ゴルフセミナーへの参加を通じてタイ長期滞在が実現できます。</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>&#10060; こんなお悩みありませんか？</h3>
+          <ul>
+            <li>&#8226; タイに長期滞在したいけど、適切なビザが見つからない</li>
+            <li>&#8226; リタイアメントビザは条件が厳しくてハードルが高い</li>
+            <li>&#8226; ビザランを繰り返すのはもう疲れた</li>
+            <li>&#8226; タイでゴルフを楽しみながらのんびり暮らしたい</li>
+            <li>&#8226; ビザ申請の書類準備が面倒で何から始めればいいかわからない</li>
+          </ul>
+        </div>
+        <div class="solution-card">
+          <h3>&#9989; DTVゴルフプログラムで解決</h3>
+          <ul>
+            <li>&#8226; DTV申請に必要な入学許可書・セミナー概要書を発行</li>
+            <li>&#8226; 1回の入国で最長180日の滞在が可能</li>
+            <li>&#8226; 週1回のゴルフセミナーで充実したタイ生活</li>
+            <li>&#8226; 日本語で書類準備から申請手続きまで丁寧にサポート</li>
+            <li>&#8226; 50以上の提携ゴルフ場でタイのゴルフライフを満喫</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scene-strip">
+        <div class="scene-item" style="background: url('https://picsum.photos/seed/scene1/300/200') center/cover no-repeat;"></div>
+        <div class="scene-item" style="background: url('https://picsum.photos/seed/scene2/300/200') center/cover no-repeat;"></div>
+        <div class="scene-item" style="background: url('https://picsum.photos/seed/scene3/300/200') center/cover no-repeat;"></div>
+        <div class="scene-item" style="background: url('https://picsum.photos/seed/scene4/300/200') center/cover no-repeat;"></div>
+        <div class="scene-item" style="background: url('https://picsum.photos/seed/scene5/300/200') center/cover no-repeat;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section class="section section-light" id="flow">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">How It Works</div>
+        <h2>DTV取得までの流れ</h2>
+        <p>お申し込みからタイ入国まで、シンプルな4ステップ。書類準備もしっかりサポートします。</p>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <h3>無料相談・お申し込み</h3>
+          <p>LINE・メールでお気軽にご相談。ご希望のプランが決まったらお申し込みください。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <h3>ビザ書類の発行</h3>
+          <p>DTV申請に必要な入学許可書、セミナースケジュール、受講証明書を発行します。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <h3>大使館でDTV申請</h3>
+          <p>タイ大使館にてDTVビザを申請。必要書類のチェックリストもお渡しします。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <h3>タイ入国・セミナー開始</h3>
+          <p>タイに入国後、毎週のゴルフセミナーに参加しながらタイ生活をお楽しみください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MERIT -->
+  <section class="section section-navy" id="merit">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Why Golf × DTV</div>
+        <h2>ゴルフでDTVを取るメリット</h2>
+        <p>教育・文化活動の中でも、ゴルフセミナーならではの魅力があります。</p>
+      </div>
+      <div class="merit-grid">
+        <div class="merit-card">
+          <div class="icon">&#127774;</div>
+          <h3>年中ベストシーズン</h3>
+          <p>タイは年間を通じて温暖。日本の冬でも半袖でラウンドできる最高のゴルフ環境です。</p>
+        </div>
+        <div class="merit-card">
+          <div class="icon">&#128176;</div>
+          <h3>コスパ抜群のゴルフ</h3>
+          <p>名門コースでも日本の約半額。キャディ付きで快適なラウンドが楽しめます。</p>
+        </div>
+        <div class="merit-card">
+          <div class="icon">&#128197;</div>
+          <h3>週1回でOK</h3>
+          <p>セミナーは週1回。残りの時間は観光・グルメ・ゴルフ三昧、自由にお過ごしいただけます。</p>
+        </div>
+        <div class="merit-card">
+          <div class="icon">&#128196;</div>
+          <h3>書類発行もおまかせ</h3>
+          <p>入学許可書・受講証明書など、DTV申請に必要な書類はすべて当アカデミーが発行します。</p>
+        </div>
+        <div class="merit-card">
+          <div class="icon">&#127947;</div>
+          <h3>本格的なスキルアップ</h3>
+          <p>プロの指導で実際にゴルフも上達。滞在中にスコアアップを目指せます。</p>
+        </div>
+        <div class="merit-card">
+          <div class="icon">&#129309;</div>
+          <h3>日本語で安心</h3>
+          <p>相談・書類・セミナーすべて日本語対応。タイ語・英語が不安な方もご安心ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Gallery</div>
+        <h2>タイのゴルフライフを写真で</h2>
+        <p>セミナーやラウンドの様子、タイの美しいゴルフコースの風景をご紹介します。</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-large" style="background: url('https://picsum.photos/seed/golfpano1/800/500') center/cover no-repeat;">
+          <div class="gallery-caption">バンコク近郊の提携ゴルフ場</div>
+        </div>
+        <div class="gallery-item" style="background: url('https://picsum.photos/seed/golfthai2/400/400') center/cover no-repeat;">
+          <div class="gallery-caption">セミナー風景</div>
+        </div>
+        <div class="gallery-item" style="background: url('https://picsum.photos/seed/golfthai3/400/400') center/cover no-repeat;">
+          <div class="gallery-caption">キャディ付きラウンド</div>
+        </div>
+        <div class="gallery-item" style="background: url('https://picsum.photos/seed/golfthai4/400/400') center/cover no-repeat;">
+          <div class="gallery-caption">練習場でのレッスン</div>
+        </div>
+        <div class="gallery-item" style="background: url('https://picsum.photos/seed/bangkoksky/400/400') center/cover no-repeat;">
+          <div class="gallery-caption">バンコクの街並み</div>
+        </div>
+        <div class="gallery-item gallery-large" style="background: url('https://picsum.photos/seed/golfpano2/800/500') center/cover no-repeat;">
+          <div class="gallery-caption">夕暮れのコースラウンド</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTOR -->
+  <section class="section section-light" id="instructor">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Instructors</div>
+        <h2>講師紹介</h2>
+        <p>経験豊富なプロゴルファーが、あなたのゴルフと滞在をサポートします。</p>
+      </div>
+      <div class="instructor-grid">
+        <div class="instructor-card">
+          <div class="instructor-photo" style="background: url('https://picsum.photos/seed/person1/400/400') center/cover no-repeat;"></div>
+          <div class="instructor-info">
+            <h3>田中 健太</h3>
+            <div class="instructor-title">ヘッドプロ / PGA公認ティーチングプロ</div>
+            <p>タイでの指導歴15年。初心者から上級者まで幅広く指導。日本語・タイ語堪能。</p>
+          </div>
+        </div>
+        <div class="instructor-card">
+          <div class="instructor-photo" style="background: url('https://picsum.photos/seed/person2/400/400') center/cover no-repeat;"></div>
+          <div class="instructor-info">
+            <h3>山本 裕子</h3>
+            <div class="instructor-title">プロゴルファー / DTV申請アドバイザー</div>
+            <p>元LPGAツアー選手。女性ゴルファーの指導に定評あり。ビザ申請のサポートも担当。</p>
+          </div>
+        </div>
+        <div class="instructor-card">
+          <div class="instructor-photo" style="background: url('https://picsum.photos/seed/person3/400/400') center/cover no-repeat;"></div>
+          <div class="instructor-info">
+            <h3>Somchai P.</h3>
+            <div class="instructor-title">アシスタントプロ / コースマネジメント専門</div>
+            <p>タイ国内トーナメント優勝経験。タイのゴルフ場を知り尽くした現地スタッフ。日本語対応可。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="section" id="program">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Seminar Program</div>
+        <h2>セミナープログラム</h2>
+        <p>レベルに合わせた4つのプログラム。DTV対応の週間セミナーとして毎週開催しています。</p>
+      </div>
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="program-icon" style="background: url('https://picsum.photos/seed/golfswing/400/400') center/cover no-repeat;"></div>
+          <div class="program-body">
+            <div class="sub">Basic Swing Seminar</div>
+            <h3>スイング基礎セミナー</h3>
+            <p>グリップ・スタンス・スイング軌道の基本を学ぶ初心者向けプログラム。練習場での実践レッスン付き。月曜 9:00-12:00</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon" style="background: url('https://picsum.photos/seed/golfcourse/400/400') center/cover no-repeat;"></div>
+          <div class="program-body">
+            <div class="sub">Course Management</div>
+            <h3>コースマネジメント実践</h3>
+            <p>実際のコースで戦略的プレーを学ぶ中級者向け。風の読み方、クラブ選択のコツを習得。木曜 7:00-12:00</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon" style="background: url('https://picsum.photos/seed/golfgreen/400/400') center/cover no-repeat;"></div>
+          <div class="program-body">
+            <div class="sub">Short Game Workshop</div>
+            <h3>ショートゲームワークショップ</h3>
+            <p>アプローチ・バンカー・パッティングに特化。スコアに直結する100ヤード以内の技術を磨きます。水曜 9:00-13:00</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon" style="background: url('https://picsum.photos/seed/golftournament/400/400') center/cover no-repeat;"></div>
+          <div class="program-body">
+            <div class="sub">Tournament Preparation</div>
+            <h3>トーナメント準備プログラム</h3>
+            <p>競技志向の上級者向け総合プログラム。メンタル・フィジカル・ラウンド戦略を包括的に指導。土曜 7:00-13:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section section-light" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Pricing</div>
+        <h2>料金プラン</h2>
+        <p>DTV申請対応のプランをご用意しています。</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>お試しプラン</h3>
+          <div class="price">&#3647;3,500<span>/回</span></div>
+          <div class="price-note">まずは体験してみたい方に</div>
+          <ul class="pricing-features">
+            <li>1回のセミナー受講</li>
+            <li>選べる4コースから1つ</li>
+            <li>練習場使用料込み</li>
+            <li>日本語テキスト付き</li>
+          </ul>
+          <a href="#contact" class="btn btn-navy" style="width: 100%;">相談する</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>DTV対応プラン</h3>
+          <div class="price">&#3647;12,000<span>/月</span></div>
+          <div class="price-note">DTV申請書類発行付き・週1回受講</div>
+          <ul class="pricing-features">
+            <li>月4回のセミナー受講（週1回）</li>
+            <li>全4コース受講可能</li>
+            <li>DTV用入学許可書・受講証明書発行</li>
+            <li>練習場使用料込み</li>
+            <li>コースラウンド1回付き</li>
+            <li>LINE個別サポート</li>
+          </ul>
+          <a href="#contact" class="btn btn-gold" style="width: 100%;">無料相談する</a>
+        </div>
+        <div class="pricing-card">
+          <h3>プレミアムプラン</h3>
+          <div class="price">&#3647;25,000<span>/月</span></div>
+          <div class="price-note">ゴルフもビザも全力サポート</div>
+          <ul class="pricing-features">
+            <li>月8回のセミナー受講（週2回）</li>
+            <li>全4コース受講可能</li>
+            <li>DTV用入学許可書・受講証明書発行</li>
+            <li>コースラウンド3回付き</li>
+            <li>スイング動画分析</li>
+            <li>プロとのマンツーマンレッスン1回</li>
+          </ul>
+          <a href="#contact" class="btn btn-navy" style="width: 100%;">相談する</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Useful Info</div>
+        <h2>お役立ち情報</h2>
+        <p>DTVビザやタイ長期滞在に関する情報をまとめています。</p>
+      </div>
+      <div class="articles-grid">
+        <a href="articles/what-is-dtv.html" class="article-card">
+          <div class="article-thumb" style="background: url('https://picsum.photos/seed/thaivisa/700/400') center/cover no-repeat;"></div>
+          <div class="article-card-body">
+            <div class="tag">DTV基礎知識</div>
+            <h3>DTVとは？ Destination Thailand Visaを徹底解説</h3>
+            <p>2024年に新設されたDTVビザの概要、対象者、滞在期間、申請条件をわかりやすく解説します。</p>
+            <span class="read-more">続きを読む &rarr;</span>
+          </div>
+        </a>
+        <a href="articles/why-golf-dtv.html" class="article-card">
+          <div class="article-thumb" style="background: url('https://picsum.photos/seed/golfclub2/700/400') center/cover no-repeat;"></div>
+          <div class="article-card-body">
+            <div class="tag">ゴルフ×DTV</div>
+            <h3>なぜゴルフでDTVを取るのか？他の方法との比較</h3>
+            <p>DTV対応の教育プログラムの中で、ゴルフセミナーを選ぶメリットと他の選択肢との違いを比較します。</p>
+            <span class="read-more">続きを読む &rarr;</span>
+          </div>
+        </a>
+        <a href="articles/dtv-lifestyle.html" class="article-card">
+          <div class="article-thumb" style="background: url('https://picsum.photos/seed/bangkok3/700/400') center/cover no-repeat;"></div>
+          <div class="article-card-body">
+            <div class="tag">タイ生活</div>
+            <h3>DTV取得後のタイ生活ガイド｜滞在中にできること</h3>
+            <p>DTVでタイに長期滞在中の生活スタイル。ゴルフ以外の楽しみ方や生活コストもご紹介。</p>
+            <span class="read-more">続きを読む &rarr;</span>
+          </div>
+        </a>
+        <a href="articles/dtv-application.html" class="article-card">
+          <div class="article-thumb" style="background: url('https://picsum.photos/seed/passport5/700/400') center/cover no-repeat;"></div>
+          <div class="article-card-body">
+            <div class="tag">申請ガイド</div>
+            <h3>DTV申請の流れと必要書類まとめ</h3>
+            <p>DTV申請に必要な書類一覧、申請手順、よくある質問。準備から取得までをステップで解説。</p>
+            <span class="read-more">続きを読む &rarr;</span>
+          </div>
+        </a>
+        <a href="articles/thailand-golf.html" class="article-card">
+          <div class="article-thumb" style="background: url('https://picsum.photos/seed/tropical7/700/400') center/cover no-repeat;"></div>
+          <div class="article-card-body">
+            <div class="tag">タイゴルフ</div>
+            <h3>タイがゴルフ天国と呼ばれる5つの理由</h3>
+            <p>世界中のゴルファーがタイを訪れる理由。コスト、気候、コースの質、ホスピタリティの魅力を紹介。</p>
+            <span class="read-more">続きを読む &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-light" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">FAQ</div>
+        <h2>よくある質問</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">DTVビザとは何ですか？<span class="arrow">&#9660;</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">DTV（Destination Thailand Visa）は、タイ政府が2024年に新設した長期滞在ビザです。文化・教育活動への参加を目的とした滞在が認められており、1回の入国で最長180日の滞在が可能です。当アカデミーのゴルフセミナーはDTV対応プログラムとして入学許可書を発行しています。</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">ゴルフ初心者でも申し込めますか？<span class="arrow">&#9660;</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">はい、もちろんです。スイング基礎セミナーは完全な初心者の方を対象としています。クラブの握り方から丁寧に指導しますので、ゴルフ経験がなくても問題ありません。レンタルクラブも無料でご利用いただけます。</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">DTV申請のサポートはどこまでしてもらえますか？<span class="arrow">&#9660;</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">入学許可書・セミナー概要書・受講証明書の発行、申請に必要な書類リストのご案内、書類の記入サポートまで対応しております。ビザ申請そのものはご自身でタイ大使館にて行っていただきますが、手続きの流れは丁寧にご説明します。</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">セミナーは週に何回参加する必要がありますか？<span class="arrow">&#9660;</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">DTV対応プランでは週1回の参加が基本です。残りの時間はゴルフ、観光、グルメなど自由にお過ごしいただけます。もっとゴルフに集中したい方はプレミアムプラン（週2回）もございます。</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">DTV取得を保証してもらえますか？<span class="arrow">&#9660;</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">ビザの発給はタイ大使館・入国管理局の判断となるため、取得を保証するものではございません。ただし、当アカデミーではDTV申請に必要な書類をすべて発行し、申請手続きを丁寧にサポートいたします。これまで多くの方がスムーズにDTVを取得されています。</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">すべて日本語で対応してもらえますか？<span class="arrow">&#9660;</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">はい、ご相談・書類発行・セミナーすべて日本語で対応しております。タイ語・英語が不安な方もご安心ください。</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Contact</div>
+        <h2>無料相談・お問い合わせ</h2>
+        <p>DTVビザやセミナーについて、お気軽にご連絡ください。</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>FUJI GOLF ACADEMY</h3>
+          <div class="contact-item">
+            <div class="contact-icon">&#128205;</div>
+            <div><h4>所在地</h4><p>バンコク, タイ</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#128231;</div>
+            <div><h4>メール</h4><p>info@fuji-golf-academy.com</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#128242;</div>
+            <div><h4>LINE</h4><p>@fujigolfacademy</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#128222;</div>
+            <div><h4>電話</h4><p>+66-XX-XXX-XXXX</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#128337;</div>
+            <div><h4>営業時間</h4><p>月〜土 8:00 - 18:00（タイ時間）</p></div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label>お名前 *</label>
+              <input type="text" placeholder="山田 太郎">
+            </div>
+            <div class="form-group">
+              <label>メールアドレス *</label>
+              <input type="email" placeholder="example@email.com">
+            </div>
+            <div class="form-group">
+              <label>ご相談内容</label>
+              <select>
+                <option>DTVビザについて</option>
+                <option>セミナー内容について</option>
+                <option>料金・プランについて</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>メッセージ</label>
+              <textarea placeholder="ご質問やご要望をご記入ください"></textarea>
+            </div>
+            <button type="submit" class="btn btn-navy btn-large" style="width: 100%;">送信する</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom: 8px;">
+          <div class="logo-icon">FG</div>
+          <div class="logo-text">FUJI GOLF <span>ACADEMY</span></div>
+        </div>
+        <p>ゴルフで叶えるタイ長期滞在。<br>DTV対応セミナーを毎週開催中。</p>
+        <div class="social-links" style="margin-top: 16px;">
+          <a href="#">f</a>
+          <a href="#">in</a>
+          <a href="#">&#9993;</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>DTV情報</h4>
+        <ul>
+          <li><a href="articles/what-is-dtv.html">DTVとは</a></li>
+          <li><a href="articles/why-golf-dtv.html">ゴルフ×DTV</a></li>
+          <li><a href="articles/dtv-application.html">申請の流れ</a></li>
+          <li><a href="articles/dtv-lifestyle.html">タイ生活ガイド</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>プログラム</h4>
+        <ul>
+          <li><a href="#program">セミナー内容</a></li>
+          <li><a href="#pricing">料金プラン</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+          <li><a href="articles/thailand-golf.html">タイのゴルフ事情</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>サポート</h4>
+        <ul>
+          <li><a href="#contact">お問い合わせ</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">利用規約</a></li>
+          <li><a href="#">特定商取引法に基づく表記</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FUJI GOLF ACADEMY. All rights reserved.</p>
+      <p>Bangkok, Thailand</p>
+    </div>
+  </footer>
+
+</body>
+</html>

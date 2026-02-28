@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DTV取得後のタイ生活ガイド｜滞在中にできること | FUJI GOLF ACADEMY</title>
+  <meta name="description" content="DTVでタイに長期滞在中のリアルな生活スタイル。ゴルフ以外の楽しみ方、生活コスト、住居、医療など実用情報をまとめました。">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', 'Montserrat', sans-serif; color: #333; background: #fff; line-height: 1.8; font-size: 16px; }
+    a { text-decoration: none; color: inherit; }
+    :root { --navy: #2a3891; --navy-dark: #1e2a6a; --gold: #d5cd27; --gold-light: #e8e24a; --white: #fff; --gray: #666; --light-gray: #e0e0e0; }
+    header { background: var(--navy); padding: 0 20px; }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { width: 44px; height: 44px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: var(--navy); }
+    .logo-text { color: var(--white); font-family: 'Montserrat'; font-weight: 800; font-size: 20px; }
+    .logo-text span { color: var(--gold); }
+    .back-link { color: var(--gold); font-size: 14px; font-weight: 700; }
+    .article-hero { position: relative; color: var(--white); padding: 80px 20px 60px; text-align: center; overflow: hidden; }
+    .article-hero::before { content: ''; position: absolute; inset: 0; background: url('https://picsum.photos/seed/lifestyle8/1200/600') center/cover no-repeat; z-index: 0; }
+    .article-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(139,105,20,0.9) 0%, rgba(213,168,37,0.85) 100%); z-index: 1; }
+    .article-hero > * { position: relative; z-index: 2; }
+    .article-hero .tag { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); color: var(--white); padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 16px; }
+    .article-hero h1 { font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 12px; }
+    .article-hero .meta { font-size: 14px; opacity: 0.7; }
+    .article-body { max-width: 800px; margin: 0 auto; padding: 60px 20px 80px; }
+    .article-body h2 { font-size: 24px; font-weight: 900; color: var(--navy); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 3px solid var(--gold); }
+    .article-body h3 { font-size: 20px; font-weight: 800; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { margin-bottom: 16px; color: #444; }
+    .article-body ul { margin: 16px 0; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; color: #444; list-style: disc; }
+    .info-box { background: #eef3ff; border-left: 4px solid var(--navy); padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+    .info-box h4 { color: var(--navy); font-size: 16px; margin-bottom: 8px; }
+    .info-box p { margin: 0; font-size: 14px; }
+    .highlight-box { background: #fffde7; border-left: 4px solid var(--gold); padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+    .table-wrap { overflow-x: auto; margin: 24px 0; }
+    .article-body table { width: 100%; border-collapse: collapse; }
+    .article-body th { background: var(--navy); color: var(--white); padding: 12px 16px; font-size: 14px; text-align: left; }
+    .article-body td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--light-gray); }
+    .lifestyle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .lifestyle-card { background: #f7f7f7; padding: 20px; border-radius: 12px; }
+    .lifestyle-card .icon { font-size: 28px; margin-bottom: 8px; }
+    .lifestyle-card h4 { font-size: 15px; color: var(--navy); margin-bottom: 6px; }
+    .lifestyle-card p { font-size: 13px; color: var(--gray); margin: 0; }
+    .article-img { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin: 24px 0; }
+    .cta-box { background: var(--navy); color: var(--white); padding: 40px; border-radius: 16px; text-align: center; margin-top: 48px; }
+    .cta-box h3 { font-size: 22px; margin-bottom: 12px; }
+    .cta-box p { opacity: 0.8; margin-bottom: 20px; font-size: 15px; }
+    .btn { display: inline-block; padding: 12px 32px; border-radius: 6px; font-size: 14px; font-weight: 700; }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    footer { background: var(--navy-dark); color: var(--white); padding: 30px 20px; text-align: center; font-size: 13px; opacity: 0.7; }
+    @media (max-width: 768px) { .article-hero h1 { font-size: 26px; } .lifestyle-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header><div class="nav-container"><a href="../index.html" class="logo"><div class="logo-icon">FG</div><div class="logo-text">FUJI GOLF <span>ACADEMY</span></div></a><a href="../index.html" class="back-link">&larr; トップに戻る</a></div></header>
+
+  <div class="article-hero">
+    <div class="tag">タイ生活</div>
+    <h1>DTV取得後のタイ生活ガイド<br>滞在中にできること</h1>
+    <div class="meta">更新日: 2026年2月</div>
+  </div>
+
+  <article class="article-body">
+    <p>DTVを取得してタイに入国した後、実際にどんな生活が待っているのか？週1回のゴルフセミナー以外の時間の過ごし方や、生活の実際をご紹介します。</p>
+
+    <h2>DTV滞在中の1週間モデル</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>曜日</th><th>過ごし方の例</th></tr>
+        <tr><td>月曜</td><td>ゴルフセミナー参加（午前）/ 午後フリー</td></tr>
+        <tr><td>火曜</td><td>提携ゴルフ場でフリーラウンド</td></tr>
+        <tr><td>水曜</td><td>バンコク市内散策・ショッピング</td></tr>
+        <tr><td>木曜</td><td>タイ料理を食べ歩き / マッサージ</td></tr>
+        <tr><td>金曜</td><td>練習場で自主練習</td></tr>
+        <tr><td>土日</td><td>近郊リゾートへ小旅行 / ゴルフ仲間とラウンド</td></tr>
+      </table>
+    </div>
+
+    <img src="https://picsum.photos/seed/bangkoklife/800/400" alt="バンコクの日常" class="article-img">
+
+    <h2>ゴルフ以外の楽しみ方</h2>
+    <div class="lifestyle-grid">
+      <div class="lifestyle-card">
+        <div class="icon">&#127860;</div>
+        <h4>グルメ・食の探求</h4>
+        <p>ミシュラン星付きレストランから屋台まで。世界有数のフードシティ、バンコクの食を堪能。</p>
+      </div>
+      <div class="lifestyle-card">
+        <div class="icon">&#128716;</div>
+        <h4>スパ・ウェルネス</h4>
+        <p>タイ古式マッサージやスパが格安で楽しめます。日本の半額以下で極上のリラクゼーション。</p>
+      </div>
+      <div class="lifestyle-card">
+        <div class="icon">&#127958;</div>
+        <h4>旅行・リゾート</h4>
+        <p>プーケット、サムイ島、チェンマイなど、国内旅行も充実。LCCで安くアクセスできます。</p>
+      </div>
+      <div class="lifestyle-card">
+        <div class="icon">&#128187;</div>
+        <h4>リモートワーク</h4>
+        <p>DTVはリモートワークも認められています。カフェやコワーキングスペースで仕事も可能。</p>
+      </div>
+      <div class="lifestyle-card">
+        <div class="icon">&#127947;</div>
+        <h4>スポーツ・フィットネス</h4>
+        <p>ゴルフ以外にもテニス、水泳、ジムなどの施設が充実。日本より安く利用できます。</p>
+      </div>
+      <div class="lifestyle-card">
+        <div class="icon">&#128106;</div>
+        <h4>日本人コミュニティ</h4>
+        <p>バンコクには約8万人の日本人が在住。日本食レストラン、日系スーパーも豊富です。</p>
+      </div>
+    </div>
+
+    <h2>生活コストの目安</h2>
+    <p>タイの生活コストは日本と比べてかなり抑えられます。以下はバンコクでの月間生活費の目安です。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>項目</th><th>月額目安</th><th>備考</th></tr>
+        <tr><td>住居（コンドミニアム）</td><td>15,000〜40,000バーツ</td><td>プール・ジム付きが一般的</td></tr>
+        <tr><td>食費</td><td>10,000〜20,000バーツ</td><td>屋台なら1食50〜100バーツ</td></tr>
+        <tr><td>交通費</td><td>2,000〜5,000バーツ</td><td>BTS/MRT/タクシー</td></tr>
+        <tr><td>ゴルフ（セミナー外）</td><td>5,000〜15,000バーツ</td><td>月2〜4ラウンド</td></tr>
+        <tr><td>通信費</td><td>500〜1,000バーツ</td><td>SIMカード・Wi-Fi</td></tr>
+        <tr><td><strong>合計目安</strong></td><td><strong>35,000〜80,000バーツ</strong></td><td><strong>約14万〜32万円</strong></td></tr>
+      </table>
+    </div>
+
+    <img src="https://picsum.photos/seed/condopool/800/400" alt="コンドミニアムのプール" class="article-img">
+
+    <h2>住居について</h2>
+    <p>バンコクのコンドミニアムは家具付きが基本。プール、ジム、セキュリティ完備の物件が月15,000バーツ（約6万円）から見つかります。日本人に人気のエリアはスクンビット、シーロム、トンロー周辺です。</p>
+    <p>短期滞在であればサービスアパートメントやAirbnbも選択肢に入ります。</p>
+
+    <h2>医療・保険</h2>
+    <p>バンコクには日本語対応の病院が複数あります（バムルンラード病院、サミティヴェート病院など）。DTV滞在中は民間の海外旅行保険への加入をお勧めします。</p>
+
+    <div class="info-box">
+      <h4>90日レポートについて</h4>
+      <p>タイに90日以上連続して滞在する場合は、入国管理局への「90日レポート」の届出が必要です。オンラインでも手続き可能です。</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>タイでの新生活、一歩を踏み出しませんか？</h3>
+      <p>DTVを活用したタイ長期滞在について、詳しくご案内します。</p>
+      <a href="../index.html#contact" class="btn btn-gold">無料相談はこちら</a>
+    </div>
+  </article>
+
+  <footer><p>&copy; 2026 FUJI GOLF ACADEMY. All rights reserved.</p></footer>
+</body>
+</html>
