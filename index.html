@@ -235,6 +235,16 @@
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     }
     @media (max-width: 480px) { .hero h1 { font-size: 32px; } }
+
+    /* i18n TRANSITION */
+    body { transition: opacity 0.25s ease; }
+    @media (max-width: 768px) {
+      .nav-lang.mobile-show { display: flex !important; position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); z-index: 51; gap: 16px; background: rgba(10,10,10,0.95); padding: 12px 24px; border-radius: 30px; border: 1px solid #333; }
+      .nav-lang.mobile-show a { font-size: 16px; padding: 6px 14px; border: 1px solid #444; border-radius: 6px; transition: all 0.3s; }
+      .nav-lang.mobile-show a.active { border-color: var(--green); color: var(--green); }
+    }
+    .footer-langs a { color: var(--gray-dark); transition: color 0.3s; }
+    .footer-langs a:hover, .footer-langs a.active { color: var(--white); }
   </style>
 </head>
 <body>
@@ -264,11 +274,11 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <div class="nav-lang">
-        <a href="#" class="active">EN</a>
-        <a href="#">JP</a>
-        <a href="#">TH</a>
-        <a href="#">VN</a>
+      <div class="nav-lang" id="navLang">
+        <a href="#" data-lang="en" class="active">EN</a>
+        <a href="#" data-lang="jp">JP</a>
+        <a href="#" data-lang="th">TH</a>
+        <a href="#" data-lang="vn">VN</a>
       </div>
       <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
@@ -490,7 +500,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Ken's Golf. All rights reserved.</span>
-      <div class="footer-langs"><span>EN</span> · <span>JP</span> · <span>TH</span> · <span>VN</span></div>
+      <div class="footer-langs" id="footerLangs"><a href="#" data-lang="en">EN</a> · <a href="#" data-lang="jp">JP</a> · <a href="#" data-lang="th">TH</a> · <a href="#" data-lang="vn">VN</a></div>
     </div>
   </footer>
 
@@ -666,6 +676,307 @@
 
     /* 16. CONSOLE */
     console.log('%c⛳ Ken\'s Golf Bangkok %c Built with passion & JavaScript ', 'background:#2CB441;color:#000;font-size:14px;padding:6px 10px;font-weight:bold;border-radius:4px 0 0 4px;', 'background:#111;color:#2CB441;font-size:14px;padding:6px 10px;font-weight:bold;border-radius:0 4px 4px 0;');
+
+    /* 17. i18n LANGUAGE SYSTEM */
+    (() => {
+      const T = {
+        en: {
+          title:"Ken's Golf | Master Your Game - Bangkok, Thailand",
+          nav:['Home','Golf Academy','Repair Atelier','Pricing','Contact'],
+          hero_title:'MAST<br>ER<br>YOUR<br><span class="green">GAME</span>',
+          hero_desc:'Premium golf instruction and master-level club repair. <span class="highlight">No language barriers.</span>',
+          hero_sub:'On-site technical atelier. Four languages, one destination.',
+          hero_btn1:'EXPLORE ACADEMY', hero_btn2:'REPAIR ATELIER',
+          global_title:'\u{1F310} GLOBAL ACCESS',
+          marquee:['PROFESSIONAL GOLF INSTRUCTION','MASTER CLUB REPAIR'],
+          about_label:'\u26A1 ABOUT US',
+          about_title:'Next Level<br><span class="green">Golf</span>',
+          about_desc:'A modern hub for professional coaching and expert club repairs. We combine technical instruction with precision gear tuning for golfers who want to play their best.',
+          about_feat:['Professional Coaching','Expert Club Repairs','Precision Tuning'],
+          master_label:'THE MASTER',
+          master_intro:'Precision coaching from a quadrilingual coach. Technical mastery meets cultural intelligence.',
+          master_role:'HEAD PRO',
+          master_spec_l:'SPECIALIZATION',
+          master_spec:'Multilingual golf coaching, international tournament preparation, cross-cultural golf etiquette, Japanese performance techniques, youth golf development, multi-market golf consultancy.',
+          master_lang_l:'LANGUAGES',
+          master_lang:'Japanese, English, Thai, Vietnamese',
+          master_bio:"Ken Sugiyama is the driving force behind Ken's Golf. Born in Japan and raised in Thailand since the age of 2, Ken brings a unique international perspective to the game. He honed his professional skills at the prestigious Mizuho High School golf club in Ibaraki, Japan. To ensure a welcoming experience for everyone, Ken can speak 4 languages. His goal is to combine his training with a friendly, accessible approach for golfers of all backgrounds and levels.",
+          master_cta:'BOOK SESSION \u2192',
+          atelier_label:'\u{1F527} TECHNICAL ATELIER',
+          atelier_title:'Golf Club<br>Repair',
+          atelier_desc:"Our on-site workshop isn't just a repair shop. It's a high-tech lab where data meets craftsmanship. From loft/lie adjustments to complete shaft optimization.",
+          atelier_svc:['LOFT & LIE ADJUSTMENT','SHAFT PURING & SPINING','GRIP CUSTOMIZATION','SWING WEIGHT BALANCING'],
+          atelier_btn:'ENTER THE ATELIER',
+          atelier_stat:['STATUS','Operational','IMPROVEMENT','Skills x10'],
+          adv_title:'Our <span class="green">Advantages</span>',
+          adv:[
+            ['Elite Japanese Coaching','Immerse yourself in the precision and philosophy of Japanese golf. Our elite coaches bring traditional techniques and modern insights to refine your game.','EXPLORE JAPANESE METHODS \u2192'],
+            ['In-House Manufacturing & Quality Control','Our dedicated on-site workshop allows us to maintain stringent quality control standards and offer bespoke solutions tailored to your exact specifications.','EXPLORE OUR CAPABILITIES \u2192'],
+            ['Global Reach with Multilingual Support','We proudly serve a diverse international clientele with a team fluent in multiple languages, ensuring seamless communication and personalized support.','CONTACT OUR TEAM \u2192'],
+            ['Decades of Industry Expertise','Benefit from the collective knowledge and innovative spirit of our seasoned professionals. Our team brings decades of experience to every project.','MEET OUR EXPERTS \u2192'],
+            ['Tournament Preparation','Elevate your competitive edge with our specialized tournament preparation programs. Focus on strategy, mental resilience, and performance under pressure.','PREPARE FOR VICTORY \u2192'],
+            ['Expert Golf Consultancy','Receive personalized advice from industry experts on equipment selection, course management, and career development to optimize your golf journey.','GET EXPERT ADVICE \u2192']
+          ],
+          stat:['LANGUAGES','COACHING','SPEED'],
+          cta_title:'Ready to<br><span class="green">Elevate?</span>',
+          cta_sub:'LINE us to start. We speak your language.',
+          cta_btn:['BOOK VIA LINE','VIEW PRICING'],
+          footer_desc:'Premium golf instruction and master-level club repair. Multilingual service in English, Japanese, Thai, and Vietnamese.',
+          footer_h:['Quick Links','Our Services'],
+          footer_svc:['Performance Coaching','Japanese Golf Fundamentals','Club Fitting & Repair','Technical Adjustments','Multilingual Instruction'],
+          footer_copy:"\u00A9 2026 Ken's Golf. All rights reserved."
+        },
+        jp: {
+          title:"Ken's Golf | \u30B2\u30FC\u30E0\u3092\u6975\u3081\u308D - \u30D0\u30F3\u30B3\u30AF\u3001\u30BF\u30A4",
+          nav:['\u30DB\u30FC\u30E0','\u30B4\u30EB\u30D5\u30A2\u30AB\u30C7\u30DF\u30FC','\u30EA\u30DA\u30A2\u30A2\u30C8\u30EA\u30A8','\u6599\u91D1','\u304A\u554F\u3044\u5408\u308F\u305B'],
+          hero_title:'\u3042\u306A\u305F\u306E<br>\u30B2\u30FC\u30E0\u3092<br><span class="green">\u6975\u3081\u308D</span>',
+          hero_desc:'\u30D7\u30EC\u30DF\u30A2\u30E0\u30B4\u30EB\u30D5\u6307\u5C0E\u3068\u30DE\u30B9\u30BF\u30FC\u30EC\u30D9\u30EB\u306E\u30AF\u30E9\u30D6\u30EA\u30DA\u30A2\u3002<span class="highlight">\u8A00\u8A9E\u306E\u58C1\u306A\u3057\u3002</span>',
+          hero_sub:'\u4F75\u8A2D\u30C6\u30AF\u30CB\u30AB\u30EB\u30A2\u30C8\u30EA\u30A8\u30024\u30F6\u56FD\u8A9E\u5BFE\u5FDC\u3001\u552F\u4E00\u306E\u5834\u6240\u3002',
+          hero_btn1:'\u30A2\u30AB\u30C7\u30DF\u30FC\u3092\u898B\u308B', hero_btn2:'\u30EA\u30DA\u30A2\u30A2\u30C8\u30EA\u30A8',
+          global_title:'\u{1F310} \u30B0\u30ED\u30FC\u30D0\u30EB\u30A2\u30AF\u30BB\u30B9',
+          marquee:['\u30D7\u30ED\u30D5\u30A7\u30C3\u30B7\u30E7\u30CA\u30EB\u30B4\u30EB\u30D5\u6307\u5C0E','\u30DE\u30B9\u30BF\u30FC\u30AF\u30E9\u30D6\u30EA\u30DA\u30A2'],
+          about_label:'\u26A1 \u79C1\u305F\u3061\u306B\u3064\u3044\u3066',
+          about_title:'\u30CD\u30AF\u30B9\u30C8\u30EC\u30D9\u30EB<br><span class="green">\u30B4\u30EB\u30D5</span>',
+          about_desc:'\u30D7\u30ED\u30D5\u30A7\u30C3\u30B7\u30E7\u30CA\u30EB\u30B3\u30FC\u30C1\u30F3\u30B0\u3068\u30A8\u30AD\u30B9\u30D1\u30FC\u30C8\u30AF\u30E9\u30D6\u30EA\u30DA\u30A2\u306E\u6700\u65B0\u62E0\u70B9\u3002\u6280\u8853\u7684\u306A\u6307\u5C0E\u3068\u7CBE\u5BC6\u306A\u30AE\u30A2\u30C1\u30E5\u30FC\u30CB\u30F3\u30B0\u3092\u7D44\u307F\u5408\u308F\u305B\u3001\u6700\u9AD8\u306E\u30D7\u30EC\u30FC\u3092\u76EE\u6307\u3059\u30B4\u30EB\u30D5\u30A1\u30FC\u3092\u30B5\u30DD\u30FC\u30C8\u3057\u307E\u3059\u3002',
+          about_feat:['\u30D7\u30ED\u30B3\u30FC\u30C1\u30F3\u30B0','\u30AF\u30E9\u30D6\u30EA\u30DA\u30A2','\u7CBE\u5BC6\u30C1\u30E5\u30FC\u30CB\u30F3\u30B0'],
+          master_label:'\u30DE\u30B9\u30BF\u30FC',
+          master_intro:'4\u30F6\u56FD\u8A9E\u3092\u64CD\u308B\u30B3\u30FC\u30C1\u306B\u3088\u308B\u7CBE\u5BC6\u6307\u5C0E\u3002\u6280\u8853\u7684\u719F\u7DF4\u3068\u6587\u5316\u7684\u77E5\u6027\u306E\u878D\u5408\u3002',
+          master_role:'\u30D8\u30C3\u30C9\u30D7\u30ED',
+          master_spec_l:'\u5C02\u9580\u5206\u91CE',
+          master_spec:'\u591A\u8A00\u8A9E\u30B4\u30EB\u30D5\u30B3\u30FC\u30C1\u30F3\u30B0\u3001\u56FD\u969B\u30C8\u30FC\u30CA\u30E1\u30F3\u30C8\u6E96\u5099\u3001\u7570\u6587\u5316\u30B4\u30EB\u30D5\u30A8\u30C1\u30B1\u30C3\u30C8\u3001\u65E5\u672C\u5F0F\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u6280\u8853\u3001\u30B8\u30E5\u30CB\u30A2\u30B4\u30EB\u30D5\u80B2\u6210\u3001\u30DE\u30EB\u30C1\u30DE\u30FC\u30B1\u30C3\u30C8\u30B4\u30EB\u30D5\u30B3\u30F3\u30B5\u30EB\u30C6\u30A3\u30F3\u30B0\u3002',
+          master_lang_l:'\u5BFE\u5FDC\u8A00\u8A9E',
+          master_lang:'\u65E5\u672C\u8A9E\u3001\u82F1\u8A9E\u3001\u30BF\u30A4\u8A9E\u3001\u30D9\u30C8\u30CA\u30E0\u8A9E',
+          master_bio:"\u6749\u5C71\u30B1\u30F3\u306FKen's Golf\u306E\u539F\u52D5\u529B\u3067\u3059\u3002\u65E5\u672C\u3067\u751F\u307E\u308C\u30012\u6B73\u304B\u3089\u30BF\u30A4\u3067\u80B2\u3061\u3001\u30B2\u30FC\u30E0\u306B\u30E6\u30CB\u30FC\u30AF\u306A\u56FD\u969B\u7684\u8996\u70B9\u3092\u3082\u305F\u3089\u3057\u307E\u3059\u3002\u8328\u57CE\u770C\u306E\u540D\u9580\u30FB\u7A00\u7A42\u9AD8\u6821\u30B4\u30EB\u30D5\u90E8\u3067\u30D7\u30ED\u306E\u6280\u8853\u3092\u78E8\u304D\u307E\u3057\u305F\u3002\u3059\u3079\u3066\u306E\u4EBA\u306B\u5FEB\u9069\u306A\u4F53\u9A13\u3092\u63D0\u4F9B\u3059\u308B\u305F\u3081\u3001\u30B1\u30F3\u306F4\u30F6\u56FD\u8A9E\u3092\u8A71\u3059\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\u5F7C\u306E\u76EE\u6A19\u306F\u3001\u3042\u3089\u3086\u308B\u80CC\u666F\u3068\u30EC\u30D9\u30EB\u306E\u30B4\u30EB\u30D5\u30A1\u30FC\u306B\u5BFE\u3057\u3066\u3001\u30C8\u30EC\u30FC\u30CB\u30F3\u30B0\u3068\u30D5\u30EC\u30F3\u30C9\u30EA\u30FC\u3067\u30A2\u30AF\u30BB\u30B9\u3057\u3084\u3059\u3044\u30A2\u30D7\u30ED\u30FC\u30C1\u3092\u878D\u5408\u3055\u305B\u308B\u3053\u3068\u3067\u3059\u3002",
+          master_cta:'\u30BB\u30C3\u30B7\u30E7\u30F3\u4E88\u7D04 \u2192',
+          atelier_label:'\u{1F527} \u30C6\u30AF\u30CB\u30AB\u30EB\u30A2\u30C8\u30EA\u30A8',
+          atelier_title:'\u30B4\u30EB\u30D5\u30AF\u30E9\u30D6<br>\u30EA\u30DA\u30A2',
+          atelier_desc:'\u79C1\u305F\u3061\u306E\u30AA\u30F3\u30B5\u30A4\u30C8\u30EF\u30FC\u30AF\u30B7\u30E7\u30C3\u30D7\u306F\u5358\u306A\u308B\u4FEE\u7406\u5E97\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002\u30C7\u30FC\u30BF\u3068\u8077\u4EBA\u6280\u304C\u878D\u5408\u3059\u308B\u30CF\u30A4\u30C6\u30AF\u30E9\u30DC\u3067\u3059\u3002\u30ED\u30D5\u30C8/\u30E9\u30A4\u8ABF\u6574\u304B\u3089\u30B7\u30E3\u30D5\u30C8\u6700\u9069\u5316\u307E\u3067\u5BFE\u5FDC\u3002',
+          atelier_svc:['\u30ED\u30D5\u30C8\uFF06\u30E9\u30A4\u8ABF\u6574','\u30B7\u30E3\u30D5\u30C8\u30D4\u30E5\u30A2\u30EA\u30F3\u30B0\uFF06\u30B9\u30D1\u30A4\u30CB\u30F3\u30B0','\u30B0\u30EA\u30C3\u30D7\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA','\u30B9\u30A4\u30F3\u30B0\u30A6\u30A7\u30A4\u30C8\u30D0\u30E9\u30F3\u30B7\u30F3\u30B0'],
+          atelier_btn:'\u30A2\u30C8\u30EA\u30A8\u306B\u5165\u308B',
+          atelier_stat:['\u30B9\u30C6\u30FC\u30BF\u30B9','\u7A3C\u50CD\u4E2D','\ \u5411\u4E0A\u5EA6','\u30B9\u30AD\u30EB x10'],
+          adv_title:'\u79C1\u305F\u3061\u306E<span class="green">\u5F37\u307F</span>',
+          adv:[
+            ['\u30A8\u30EA\u30FC\u30C8\u65E5\u672C\u5F0F\u30B3\u30FC\u30C1\u30F3\u30B0','\u65E5\u672C\u306E\u30B4\u30EB\u30D5\u306E\u7CBE\u5BC6\u3055\u3068\u54F2\u5B66\u306B\u6D78\u308A\u307E\u3057\u3087\u3046\u3002\u30A8\u30EA\u30FC\u30C8\u30B3\u30FC\u30C1\u304C\u4F1D\u7D71\u7684\u306A\u6280\u8853\u3068\u6700\u65B0\u306E\u77E5\u898B\u3092\u878D\u5408\u3057\u3001\u3042\u306A\u305F\u306E\u30B2\u30FC\u30E0\u3092\u78E8\u304D\u307E\u3059\u3002','\u65E5\u672C\u5F0F\u30E1\u30BD\u30C3\u30C9\u3092\u63A2\u308B \u2192'],
+            ['\u81EA\u793E\u88FD\u9020\u3068\u54C1\u8CEA\u7BA1\u7406','\u5C02\u7528\u306E\u30AA\u30F3\u30B5\u30A4\u30C8\u30EF\u30FC\u30AF\u30B7\u30E7\u30C3\u30D7\u306B\u3088\u308A\u3001\u53B3\u683C\u306A\u54C1\u8CEA\u7BA1\u7406\u57FA\u6E96\u3092\u7DAD\u6301\u3057\u3001\u304A\u5BA2\u69D8\u306E\u4ED5\u69D8\u306B\u5408\u308F\u305B\u305F\u30AA\u30FC\u30C0\u30FC\u30E1\u30A4\u30C9\u30BD\u30EA\u30E5\u30FC\u30B7\u30E7\u30F3\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002','\u88FD\u9020\u80FD\u529B\u3092\u898B\u308B \u2192'],
+            ['\u591A\u8A00\u8A9E\u30B0\u30ED\u30FC\u30D0\u30EB\u30B5\u30DD\u30FC\u30C8','\u591A\u8A00\u8A9E\u306B\u5802\u80FD\u306A\u30C1\u30FC\u30E0\u3067\u591A\u69D8\u306A\u56FD\u969B\u7684\u30AF\u30E9\u30A4\u30A2\u30F3\u30C8\u306B\u30B5\u30FC\u30D3\u30B9\u3092\u63D0\u4F9B\u3057\u3001\u30B7\u30FC\u30E0\u30EC\u30B9\u306A\u30B3\u30DF\u30E5\u30CB\u30B1\u30FC\u30B7\u30E7\u30F3\u3068\u30D1\u30FC\u30BD\u30CA\u30E9\u30A4\u30BA\u3055\u308C\u305F\u30B5\u30DD\u30FC\u30C8\u3092\u5B9F\u73FE\u3057\u307E\u3059\u3002','\u30C1\u30FC\u30E0\u306B\u9023\u7D61 \u2192'],
+            ['\u6570\u5341\u5E74\u306E\u696D\u754C\u7D4C\u9A13','\u7D4C\u9A13\u8C4A\u5BCC\u306A\u30D7\u30ED\u30D5\u30A7\u30C3\u30B7\u30E7\u30CA\u30EB\u306E\u77E5\u8B58\u3068\u9769\u65B0\u7684\u306A\u7CBE\u795E\u304B\u3089\u6069\u6075\u3092\u53D7\u3051\u3066\u304F\u3060\u3055\u3044\u3002\u3059\u3079\u3066\u306E\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u306B\u6570\u5341\u5E74\u306E\u7D4C\u9A13\u3092\u3082\u305F\u3089\u3057\u307E\u3059\u3002','\u30A8\u30AD\u30B9\u30D1\u30FC\u30C8\u306B\u4F1A\u3046 \u2192'],
+            ['\u30C8\u30FC\u30CA\u30E1\u30F3\u30C8\u6E96\u5099','\u5C02\u9580\u7684\u306A\u30C8\u30FC\u30CA\u30E1\u30F3\u30C8\u6E96\u5099\u30D7\u30ED\u30B0\u30E9\u30E0\u3067\u7AF6\u4E89\u529B\u3092\u9AD8\u3081\u307E\u3057\u3087\u3046\u3002\u6226\u7565\u3001\u30E1\u30F3\u30BF\u30EB\u30EC\u30B8\u30EA\u30A8\u30F3\u30B9\u3001\u30D7\u30EC\u30C3\u30B7\u30E3\u30FC\u4E0B\u3067\u306E\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u306B\u7126\u70B9\u3092\u5F53\u3066\u307E\u3059\u3002','\u52DD\u5229\u3078\u306E\u6E96\u5099 \u2192'],
+            ['\u30A8\u30AD\u30B9\u30D1\u30FC\u30C8\u30B4\u30EB\u30D5\u30B3\u30F3\u30B5\u30EB\u30BF\u30F3\u30B7\u30FC','\u6A5F\u5668\u9078\u629E\u3001\u30B3\u30FC\u30B9\u30DE\u30CD\u30B8\u30E1\u30F3\u30C8\u3001\u30AD\u30E3\u30EA\u30A2\u958B\u767A\u306B\u3064\u3044\u3066\u696D\u754C\u30A8\u30AD\u30B9\u30D1\u30FC\u30C8\u304B\u3089\u30D1\u30FC\u30BD\u30CA\u30E9\u30A4\u30BA\u3055\u308C\u305F\u30A2\u30C9\u30D0\u30A4\u30B9\u3092\u53D7\u3051\u307E\u3057\u3087\u3046\u3002','\u30A8\u30AD\u30B9\u30D1\u30FC\u30C8\u306B\u76F8\u8AC7 \u2192']
+          ],
+          stat:['\u8A00\u8A9E','\u30B3\u30FC\u30C1\u30F3\u30B0','\u30B9\u30D4\u30FC\u30C9'],
+          cta_title:'\u6E96\u5099\u306F<br><span class="green">\u3067\u304D\u305F\uFF1F</span>',
+          cta_sub:'LINE\u3067\u304A\u554F\u3044\u5408\u308F\u305B\u3002\u3042\u306A\u305F\u306E\u8A00\u8A9E\u3067\u5BFE\u5FDC\u3057\u307E\u3059\u3002',
+          cta_btn:['LINE\u3067\u4E88\u7D04','\u6599\u91D1\u3092\u898B\u308B'],
+          footer_desc:'\u30D7\u30EC\u30DF\u30A2\u30E0\u30B4\u30EB\u30D5\u6307\u5C0E\u3068\u30DE\u30B9\u30BF\u30FC\u30EC\u30D9\u30EB\u306E\u30AF\u30E9\u30D6\u30EA\u30DA\u30A2\u3002\u82F1\u8A9E\u3001\u65E5\u672C\u8A9E\u3001\u30BF\u30A4\u8A9E\u3001\u30D9\u30C8\u30CA\u30E0\u8A9E\u3067\u30B5\u30FC\u30D3\u30B9\u63D0\u4F9B\u3002',
+          footer_h:['\u30AF\u30A4\u30C3\u30AF\u30EA\u30F3\u30AF','\u30B5\u30FC\u30D3\u30B9\u4E00\u89A7'],
+          footer_svc:['\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u30B3\u30FC\u30C1\u30F3\u30B0','\u65E5\u672C\u5F0F\u30B4\u30EB\u30D5\u57FA\u790E','\u30AF\u30E9\u30D6\u30D5\u30A3\u30C3\u30C6\u30A3\u30F3\u30B0\uFF06\u30EA\u30DA\u30A2','\u30C6\u30AF\u30CB\u30AB\u30EB\u8ABF\u6574','\u591A\u8A00\u8A9E\u30EC\u30C3\u30B9\u30F3'],
+          footer_copy:"\u00A9 2026 Ken's Golf. All rights reserved."
+        },
+        th: {
+          title:"Ken's Golf | \u0E1E\u0E34\u0E0A\u0E34\u0E15\u0E40\u0E01\u0E21\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 - \u0E01\u0E23\u0E38\u0E07\u0E40\u0E17\u0E1E\u0E2F",
+          nav:['\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01','\u0E2A\u0E16\u0E32\u0E1A\u0E31\u0E19\u0E01\u0E2D\u0E25\u0E4C\u0E1F','\u0E2D\u0E32\u0E40\u0E17\u0E25\u0E34\u0E40\u0E22\u0E23\u0E4C\u0E0B\u0E48\u0E2D\u0E21','\u0E23\u0E32\u0E04\u0E32','\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E40\u0E23\u0E32'],
+          hero_title:'\u0E1E\u0E34\u0E0A\u0E34\u0E15<br>\u0E40\u0E01\u0E21<br>\u0E02\u0E2D\u0E07<br><span class="green">\u0E04\u0E38\u0E13</span>',
+          hero_desc:'\u0E2A\u0E2D\u0E19\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E1E\u0E23\u0E35\u0E40\u0E21\u0E35\u0E22\u0E21\u0E41\u0E25\u0E30\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E21\u0E32\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C <span class="highlight">\u0E44\u0E21\u0E48\u0E21\u0E35\u0E01\u0E33\u0E41\u0E1E\u0E07\u0E20\u0E32\u0E29\u0E32</span>',
+          hero_sub:'\u0E2D\u0E32\u0E40\u0E17\u0E25\u0E34\u0E40\u0E22\u0E23\u0E4C\u0E40\u0E17\u0E04\u0E19\u0E34\u0E04\u0E20\u0E32\u0E22\u0E43\u0E19 \u0E2A\u0E35\u0E48\u0E20\u0E32\u0E29\u0E32 \u0E08\u0E38\u0E14\u0E2B\u0E21\u0E32\u0E22\u0E40\u0E14\u0E35\u0E22\u0E27',
+          hero_btn1:'\u0E2A\u0E33\u0E23\u0E27\u0E08\u0E2A\u0E16\u0E32\u0E1A\u0E31\u0E19', hero_btn2:'\u0E2D\u0E32\u0E40\u0E17\u0E25\u0E34\u0E40\u0E22\u0E23\u0E4C\u0E0B\u0E48\u0E2D\u0E21',
+          global_title:'\u{1F310} \u0E40\u0E02\u0E49\u0E32\u0E16\u0E36\u0E07\u0E17\u0E31\u0E48\u0E27\u0E42\u0E25\u0E01',
+          marquee:['\u0E2A\u0E2D\u0E19\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E0A\u0E35\u0E1E','\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E21\u0E32\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C'],
+          about_label:'\u26A1 \u0E40\u0E01\u0E35\u0E48\u0E22\u0E27\u0E01\u0E31\u0E1A\u0E40\u0E23\u0E32',
+          about_title:'\u0E01\u0E2D\u0E25\u0E4C\u0E1F<br><span class="green">\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E43\u0E2B\u0E21\u0E48</span>',
+          about_desc:'\u0E28\u0E39\u0E19\u0E22\u0E4C\u0E01\u0E25\u0E32\u0E07\u0E17\u0E31\u0E19\u0E2A\u0E21\u0E31\u0E22\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E42\u0E04\u0E49\u0E0A\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E0A\u0E35\u0E1E\u0E41\u0E25\u0E30\u0E01\u0E32\u0E23\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D \u0E40\u0E23\u0E32\u0E23\u0E27\u0E21\u0E01\u0E32\u0E23\u0E2A\u0E2D\u0E19\u0E40\u0E17\u0E04\u0E19\u0E34\u0E04\u0E01\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E1B\u0E23\u0E31\u0E1A\u0E41\u0E15\u0E48\u0E07\u0E2D\u0E38\u0E1B\u0E01\u0E23\u0E13\u0E4C\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E19\u0E31\u0E01\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E40\u0E25\u0E48\u0E19\u0E43\u0E2B\u0E49\u0E14\u0E35\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14',
+          about_feat:['\u0E42\u0E04\u0E49\u0E0A\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E0A\u0E35\u0E1E','\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D','\u0E1B\u0E23\u0E31\u0E1A\u0E41\u0E15\u0E48\u0E07\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33'],
+          master_label:'\u0E1C\u0E39\u0E49\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D',
+          master_intro:'\u0E01\u0E32\u0E23\u0E42\u0E04\u0E49\u0E0A\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33\u0E08\u0E32\u0E01\u0E42\u0E04\u0E49\u0E0A\u0E17\u0E35\u0E48\u0E1E\u0E39\u0E14\u0E44\u0E14\u0E49\u0E2A\u0E35\u0E48\u0E20\u0E32\u0E29\u0E32 \u0E04\u0E27\u0E32\u0E21\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D\u0E17\u0E32\u0E07\u0E40\u0E17\u0E04\u0E19\u0E34\u0E04\u0E1E\u0E1A\u0E01\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E09\u0E25\u0E32\u0E14\u0E17\u0E32\u0E07\u0E27\u0E31\u0E12\u0E19\u0E18\u0E23\u0E23\u0E21',
+          master_role:'HEAD PRO',
+          master_spec_l:'\u0E04\u0E27\u0E32\u0E21\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D',
+          master_spec:'\u0E42\u0E04\u0E49\u0E0A\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E2B\u0E25\u0E32\u0E22\u0E20\u0E32\u0E29\u0E32 \u0E01\u0E32\u0E23\u0E40\u0E15\u0E23\u0E35\u0E22\u0E21\u0E15\u0E31\u0E27\u0E41\u0E02\u0E48\u0E07\u0E02\u0E31\u0E19\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E19\u0E32\u0E19\u0E32\u0E0A\u0E32\u0E15\u0E34 \u0E21\u0E32\u0E23\u0E22\u0E32\u0E17\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E02\u0E49\u0E32\u0E21\u0E27\u0E31\u0E12\u0E19\u0E18\u0E23\u0E23\u0E21 \u0E40\u0E17\u0E04\u0E19\u0E34\u0E04\u0E01\u0E32\u0E23\u0E41\u0E2A\u0E14\u0E07\u0E1C\u0E25\u0E41\u0E1A\u0E1A\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19 \u0E01\u0E32\u0E23\u0E1E\u0E31\u0E12\u0E19\u0E32\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E40\u0E22\u0E32\u0E27\u0E0A\u0E19 \u0E17\u0E35\u0E48\u0E1B\u0E23\u0E36\u0E01\u0E29\u0E32\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E2B\u0E25\u0E32\u0E22\u0E15\u0E25\u0E32\u0E14',
+          master_lang_l:'\u0E20\u0E32\u0E29\u0E32',
+          master_lang:'\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19 \u0E2D\u0E31\u0E07\u0E01\u0E24\u0E29 \u0E44\u0E17\u0E22 \u0E40\u0E27\u0E35\u0E22\u0E14\u0E19\u0E32\u0E21',
+          master_bio:"\u0E40\u0E04\u0E19 \u0E2A\u0E38\u0E01\u0E34\u0E22\u0E32\u0E21\u0E30 \u0E04\u0E37\u0E2D\u0E1E\u0E25\u0E31\u0E07\u0E02\u0E31\u0E1A\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E40\u0E1A\u0E37\u0E49\u0E2D\u0E07\u0E2B\u0E25\u0E31\u0E07 Ken's Golf \u0E40\u0E01\u0E34\u0E14\u0E17\u0E35\u0E48\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19\u0E41\u0E25\u0E30\u0E40\u0E15\u0E34\u0E1A\u0E42\u0E15\u0E43\u0E19\u0E1B\u0E23\u0E30\u0E40\u0E17\u0E28\u0E44\u0E17\u0E22\u0E15\u0E31\u0E49\u0E07\u0E41\u0E15\u0E48\u0E2D\u0E32\u0E22\u0E38 2 \u0E02\u0E27\u0E1A \u0E40\u0E04\u0E19\u0E19\u0E33\u0E21\u0E38\u0E21\u0E21\u0E2D\u0E07\u0E19\u0E32\u0E19\u0E32\u0E0A\u0E32\u0E15\u0E34\u0E17\u0E35\u0E48\u0E40\u0E1B\u0E47\u0E19\u0E40\u0E2D\u0E01\u0E25\u0E31\u0E01\u0E29\u0E13\u0E4C\u0E21\u0E32\u0E2A\u0E39\u0E48\u0E01\u0E35\u0E2C\u0E32 \u0E40\u0E02\u0E32\u0E1D\u0E36\u0E01\u0E1D\u0E19\u0E17\u0E31\u0E01\u0E29\u0E30\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E0A\u0E35\u0E1E\u0E17\u0E35\u0E48\u0E2A\u0E42\u0E21\u0E2A\u0E23\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E42\u0E23\u0E07\u0E40\u0E23\u0E35\u0E22\u0E19\u0E21\u0E34\u0E0B\u0E39\u0E42\u0E2E\u0E43\u0E19\u0E08\u0E31\u0E07\u0E2B\u0E27\u0E31\u0E14\u0E2D\u0E34\u0E1A\u0E32\u0E23\u0E32\u0E01\u0E34 \u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19 \u0E40\u0E04\u0E19\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E1E\u0E39\u0E14\u0E44\u0E14\u0E49 4 \u0E20\u0E32\u0E29\u0E32 \u0E40\u0E1B\u0E49\u0E32\u0E2B\u0E21\u0E32\u0E22\u0E02\u0E2D\u0E07\u0E40\u0E02\u0E32\u0E04\u0E37\u0E2D\u0E01\u0E32\u0E23\u0E1C\u0E2A\u0E21\u0E1C\u0E2A\u0E32\u0E19\u0E01\u0E32\u0E23\u0E1D\u0E36\u0E01\u0E01\u0E31\u0E1A\u0E41\u0E19\u0E27\u0E17\u0E32\u0E07\u0E17\u0E35\u0E48\u0E40\u0E1B\u0E47\u0E19\u0E21\u0E34\u0E15\u0E23\u0E41\u0E25\u0E30\u0E40\u0E02\u0E49\u0E32\u0E16\u0E36\u0E07\u0E44\u0E14\u0E49\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E19\u0E31\u0E01\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E17\u0E38\u0E01\u0E1E\u0E37\u0E49\u0E19\u0E10\u0E32\u0E19\u0E41\u0E25\u0E30\u0E17\u0E38\u0E01\u0E23\u0E30\u0E14\u0E31\u0E1A",
+          master_cta:'\u0E08\u0E2D\u0E07\u0E40\u0E0B\u0E2A\u0E0A\u0E31\u0E19 \u2192',
+          atelier_label:'\u{1F527} \u0E2D\u0E32\u0E40\u0E17\u0E25\u0E34\u0E40\u0E22\u0E23\u0E4C\u0E40\u0E17\u0E04\u0E19\u0E34\u0E04',
+          atelier_title:'\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49<br>\u0E01\u0E2D\u0E25\u0E4C\u0E1F',
+          atelier_desc:'\u0E40\u0E27\u0E34\u0E23\u0E4C\u0E01\u0E0A\u0E47\u0E2D\u0E1B\u0E02\u0E2D\u0E07\u0E40\u0E23\u0E32\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48\u0E41\u0E04\u0E48\u0E23\u0E49\u0E32\u0E19\u0E0B\u0E48\u0E2D\u0E21 \u0E41\u0E15\u0E48\u0E40\u0E1B\u0E47\u0E19\u0E2B\u0E49\u0E2D\u0E07\u0E1B\u0E0F\u0E34\u0E1A\u0E31\u0E15\u0E34\u0E01\u0E32\u0E23\u0E44\u0E2E\u0E40\u0E17\u0E04\u0E17\u0E35\u0E48\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1E\u0E1A\u0E01\u0E31\u0E1A\u0E07\u0E32\u0E19\u0E1D\u0E35\u0E21\u0E37\u0E2D \u0E15\u0E31\u0E49\u0E07\u0E41\u0E15\u0E48\u0E01\u0E32\u0E23\u0E1B\u0E23\u0E31\u0E1A loft/lie \u0E44\u0E1B\u0E08\u0E19\u0E16\u0E36\u0E07\u0E01\u0E32\u0E23\u0E1B\u0E23\u0E31\u0E1A\u0E41\u0E15\u0E48\u0E07\u0E01\u0E49\u0E32\u0E19\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E2A\u0E21\u0E1A\u0E39\u0E23\u0E13\u0E4C',
+          atelier_svc:['\u0E1B\u0E23\u0E31\u0E1A LOFT & LIE','SHAFT PURING & SPINING','\u0E01\u0E23\u0E34\u0E1B\u0E04\u0E31\u0E2A\u0E15\u0E2D\u0E21','\u0E1B\u0E23\u0E31\u0E1A\u0E2A\u0E21\u0E14\u0E38\u0E25\u0E19\u0E49\u0E33\u0E2B\u0E19\u0E31\u0E01\u0E2A\u0E27\u0E34\u0E07'],
+          atelier_btn:'\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E2D\u0E32\u0E40\u0E17\u0E25\u0E34\u0E40\u0E22\u0E23\u0E4C',
+          atelier_stat:['\u0E2A\u0E16\u0E32\u0E19\u0E30','\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E43\u0E2B\u0E49\u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23','\u0E01\u0E32\u0E23\u0E1E\u0E31\u0E12\u0E19\u0E32','\u0E17\u0E31\u0E01\u0E29\u0E30 x10'],
+          adv_title:'\u0E08\u0E38\u0E14\u0E40\u0E14\u0E48\u0E19<span class="green">\u0E02\u0E2D\u0E07\u0E40\u0E23\u0E32</span>',
+          adv:[
+            ['\u0E42\u0E04\u0E49\u0E0A\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E2A\u0E44\u0E15\u0E25\u0E4C\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19\u0E0A\u0E31\u0E49\u0E19\u0E19\u0E33','\u0E14\u0E37\u0E48\u0E21\u0E14\u0E48\u0E33\u0E01\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33\u0E41\u0E25\u0E30\u0E1B\u0E23\u0E31\u0E0A\u0E0D\u0E32\u0E02\u0E2D\u0E07\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19 \u0E42\u0E04\u0E49\u0E0A\u0E0A\u0E31\u0E49\u0E19\u0E19\u0E33\u0E19\u0E33\u0E40\u0E17\u0E04\u0E19\u0E34\u0E04\u0E14\u0E31\u0E49\u0E07\u0E40\u0E14\u0E34\u0E21\u0E41\u0E25\u0E30\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E40\u0E0A\u0E34\u0E07\u0E25\u0E36\u0E01\u0E2A\u0E21\u0E31\u0E22\u0E43\u0E2B\u0E21\u0E48\u0E21\u0E32\u0E1B\u0E23\u0E31\u0E1A\u0E1B\u0E23\u0E38\u0E07\u0E40\u0E01\u0E21\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13','\u0E2A\u0E33\u0E23\u0E27\u0E08\u0E27\u0E34\u0E18\u0E35\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19 \u2192'],
+            ['\u0E1C\u0E25\u0E34\u0E15\u0E40\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E04\u0E27\u0E1A\u0E04\u0E38\u0E21\u0E04\u0E38\u0E13\u0E20\u0E32\u0E1E','\u0E40\u0E27\u0E34\u0E23\u0E4C\u0E01\u0E0A\u0E47\u0E2D\u0E1B\u0E40\u0E09\u0E1E\u0E32\u0E30\u0E17\u0E32\u0E07\u0E0A\u0E48\u0E27\u0E22\u0E43\u0E2B\u0E49\u0E40\u0E23\u0E32\u0E23\u0E31\u0E01\u0E29\u0E32\u0E21\u0E32\u0E15\u0E23\u0E10\u0E32\u0E19\u0E01\u0E32\u0E23\u0E04\u0E27\u0E1A\u0E04\u0E38\u0E21\u0E04\u0E38\u0E13\u0E20\u0E32\u0E1E\u0E17\u0E35\u0E48\u0E40\u0E02\u0E49\u0E21\u0E07\u0E27\u0E14\u0E41\u0E25\u0E30\u0E40\u0E2A\u0E19\u0E2D\u0E42\u0E0B\u0E25\u0E39\u0E0A\u0E31\u0E19\u0E17\u0E35\u0E48\u0E1B\u0E23\u0E31\u0E1A\u0E41\u0E15\u0E48\u0E07\u0E15\u0E32\u0E21\u0E02\u0E49\u0E2D\u0E01\u0E33\u0E2B\u0E19\u0E14\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13','\u0E2A\u0E33\u0E23\u0E27\u0E08\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16 \u2192'],
+            ['\u0E40\u0E02\u0E49\u0E32\u0E16\u0E36\u0E07\u0E17\u0E31\u0E48\u0E27\u0E42\u0E25\u0E01\u0E14\u0E49\u0E27\u0E22\u0E01\u0E32\u0E23\u0E2A\u0E19\u0E31\u0E1A\u0E2A\u0E19\u0E38\u0E19\u0E2B\u0E25\u0E32\u0E22\u0E20\u0E32\u0E29\u0E32','\u0E40\u0E23\u0E32\u0E43\u0E2B\u0E49\u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23\u0E25\u0E39\u0E01\u0E04\u0E49\u0E32\u0E15\u0E48\u0E32\u0E07\u0E0A\u0E32\u0E15\u0E34\u0E17\u0E35\u0E48\u0E2B\u0E25\u0E32\u0E01\u0E2B\u0E25\u0E32\u0E22\u0E14\u0E49\u0E27\u0E22\u0E17\u0E35\u0E21\u0E17\u0E35\u0E48\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D\u0E2B\u0E25\u0E32\u0E22\u0E20\u0E32\u0E29\u0E32 \u0E23\u0E31\u0E1A\u0E1B\u0E23\u0E30\u0E01\u0E31\u0E19\u0E01\u0E32\u0E23\u0E2A\u0E37\u0E48\u0E2D\u0E2A\u0E32\u0E23\u0E17\u0E35\u0E48\u0E23\u0E32\u0E1A\u0E23\u0E37\u0E48\u0E19\u0E41\u0E25\u0E30\u0E01\u0E32\u0E23\u0E2A\u0E19\u0E31\u0E1A\u0E2A\u0E19\u0E38\u0E19\u0E2A\u0E48\u0E27\u0E19\u0E1A\u0E38\u0E04\u0E04\u0E25','\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E17\u0E35\u0E21 \u2192'],
+            ['\u0E1B\u0E23\u0E30\u0E2A\u0E1A\u0E01\u0E32\u0E23\u0E13\u0E4C\u0E2D\u0E38\u0E15\u0E2A\u0E32\u0E2B\u0E01\u0E23\u0E23\u0E21\u0E2B\u0E25\u0E32\u0E22\u0E17\u0E28\u0E27\u0E23\u0E23\u0E29','\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E1B\u0E23\u0E30\u0E42\u0E22\u0E0A\u0E19\u0E4C\u0E08\u0E32\u0E01\u0E04\u0E27\u0E32\u0E21\u0E23\u0E39\u0E49\u0E41\u0E25\u0E30\u0E08\u0E34\u0E15\u0E27\u0E34\u0E0D\u0E0D\u0E32\u0E13\u0E41\u0E2B\u0E48\u0E07\u0E19\u0E27\u0E31\u0E15\u0E01\u0E23\u0E23\u0E21\u0E02\u0E2D\u0E07\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E0A\u0E35\u0E1E\u0E17\u0E35\u0E48\u0E21\u0E35\u0E1B\u0E23\u0E30\u0E2A\u0E1A\u0E01\u0E32\u0E23\u0E13\u0E4C \u0E17\u0E35\u0E21\u0E19\u0E33\u0E1B\u0E23\u0E30\u0E2A\u0E1A\u0E01\u0E32\u0E23\u0E13\u0E4C\u0E2B\u0E25\u0E32\u0E22\u0E17\u0E28\u0E27\u0E23\u0E23\u0E29\u0E21\u0E32\u0E2A\u0E39\u0E48\u0E17\u0E38\u0E01\u0E42\u0E1B\u0E23\u0E40\u0E08\u0E01\u0E15\u0E4C','\u0E1E\u0E1A\u0E1C\u0E39\u0E49\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D \u2192'],
+            ['\u0E40\u0E15\u0E23\u0E35\u0E22\u0E21\u0E15\u0E31\u0E27\u0E41\u0E02\u0E48\u0E07\u0E02\u0E31\u0E19','\u0E22\u0E01\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E44\u0E14\u0E49\u0E40\u0E1B\u0E23\u0E35\u0E22\u0E1A\u0E43\u0E19\u0E01\u0E32\u0E23\u0E41\u0E02\u0E48\u0E07\u0E02\u0E31\u0E19\u0E14\u0E49\u0E27\u0E22\u0E42\u0E1B\u0E23\u0E41\u0E01\u0E23\u0E21\u0E40\u0E15\u0E23\u0E35\u0E22\u0E21\u0E15\u0E31\u0E27\u0E41\u0E02\u0E48\u0E07\u0E02\u0E31\u0E19\u0E40\u0E09\u0E1E\u0E32\u0E30\u0E17\u0E32\u0E07 \u0E40\u0E19\u0E49\u0E19\u0E01\u0E25\u0E22\u0E38\u0E17\u0E18\u0E4C \u0E04\u0E27\u0E32\u0E21\u0E17\u0E19\u0E17\u0E32\u0E19\u0E17\u0E32\u0E07\u0E08\u0E34\u0E15\u0E43\u0E08 \u0E41\u0E25\u0E30\u0E1C\u0E25\u0E07\u0E32\u0E19\u0E20\u0E32\u0E22\u0E43\u0E15\u0E49\u0E41\u0E23\u0E07\u0E01\u0E14\u0E14\u0E31\u0E19','\u0E40\u0E15\u0E23\u0E35\u0E22\u0E21\u0E2A\u0E39\u0E48\u0E0A\u0E31\u0E22\u0E0A\u0E19\u0E30 \u2192'],
+            ['\u0E17\u0E35\u0E48\u0E1B\u0E23\u0E36\u0E01\u0E29\u0E32\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E1C\u0E39\u0E49\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D','\u0E23\u0E31\u0E1A\u0E04\u0E33\u0E41\u0E19\u0E30\u0E19\u0E33\u0E2A\u0E48\u0E27\u0E19\u0E1A\u0E38\u0E04\u0E04\u0E25\u0E08\u0E32\u0E01\u0E1C\u0E39\u0E49\u0E40\u0E0A\u0E35\u0E48\u0E22\u0E27\u0E0A\u0E32\u0E0D\u0E43\u0E19\u0E2D\u0E38\u0E15\u0E2A\u0E32\u0E2B\u0E01\u0E23\u0E23\u0E21\u0E40\u0E01\u0E35\u0E48\u0E22\u0E27\u0E01\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2D\u0E38\u0E1B\u0E01\u0E23\u0E13\u0E4C \u0E01\u0E32\u0E23\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E2A\u0E19\u0E32\u0E21 \u0E41\u0E25\u0E30\u0E01\u0E32\u0E23\u0E1E\u0E31\u0E12\u0E19\u0E32\u0E2D\u0E32\u0E0A\u0E35\u0E1E\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E1B\u0E23\u0E30\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E20\u0E32\u0E1E\u0E01\u0E32\u0E23\u0E40\u0E14\u0E34\u0E19\u0E17\u0E32\u0E07\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13','\u0E23\u0E31\u0E1A\u0E04\u0E33\u0E41\u0E19\u0E30\u0E19\u0E33 \u2192']
+          ],
+          stat:['\u0E20\u0E32\u0E29\u0E32','\u0E42\u0E04\u0E49\u0E0A\u0E0A\u0E34\u0E48\u0E07','\u0E04\u0E27\u0E32\u0E21\u0E40\u0E23\u0E47\u0E27'],
+          cta_title:'\u0E1E\u0E23\u0E49\u0E2D\u0E21<br><span class="green">\u0E22\u0E01\u0E23\u0E30\u0E14\u0E31\u0E1A?</span>',
+          cta_sub:'LINE \u0E2B\u0E32\u0E40\u0E23\u0E32\u0E44\u0E14\u0E49\u0E40\u0E25\u0E22 \u0E40\u0E23\u0E32\u0E1E\u0E39\u0E14\u0E20\u0E32\u0E29\u0E32\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13',
+          cta_btn:['\u0E08\u0E2D\u0E07\u0E1C\u0E48\u0E32\u0E19 LINE','\u0E14\u0E39\u0E23\u0E32\u0E04\u0E32'],
+          footer_desc:'\u0E2A\u0E2D\u0E19\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E1E\u0E23\u0E35\u0E40\u0E21\u0E35\u0E22\u0E21\u0E41\u0E25\u0E30\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E21\u0E32\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C \u0E43\u0E2B\u0E49\u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23\u0E40\u0E1B\u0E47\u0E19\u0E20\u0E32\u0E29\u0E32\u0E2D\u0E31\u0E07\u0E01\u0E24\u0E29 \u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19 \u0E44\u0E17\u0E22 \u0E41\u0E25\u0E30\u0E40\u0E27\u0E35\u0E22\u0E14\u0E19\u0E32\u0E21',
+          footer_h:['\u0E25\u0E34\u0E07\u0E01\u0E4C\u0E14\u0E48\u0E27\u0E19','\u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23\u0E02\u0E2D\u0E07\u0E40\u0E23\u0E32'],
+          footer_svc:['\u0E42\u0E04\u0E49\u0E0A\u0E1C\u0E25\u0E07\u0E32\u0E19','\u0E1E\u0E37\u0E49\u0E19\u0E10\u0E32\u0E19\u0E01\u0E2D\u0E25\u0E4C\u0E1F\u0E0D\u0E35\u0E48\u0E1B\u0E38\u0E48\u0E19','\u0E1F\u0E34\u0E15\u0E15\u0E34\u0E49\u0E07\u0E41\u0E25\u0E30\u0E0B\u0E48\u0E2D\u0E21\u0E44\u0E21\u0E49','\u0E1B\u0E23\u0E31\u0E1A\u0E41\u0E15\u0E48\u0E07\u0E40\u0E17\u0E04\u0E19\u0E34\u0E04','\u0E2A\u0E2D\u0E19\u0E2B\u0E25\u0E32\u0E22\u0E20\u0E32\u0E29\u0E32'],
+          footer_copy:"\u00A9 2026 Ken's Golf. \u0E2A\u0E07\u0E27\u0E19\u0E25\u0E34\u0E02\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C"
+        },
+        vn: {
+          title:"Ken's Golf | L\u00E0m Ch\u1EE7 Cu\u1ED9c Ch\u01A1i - Bangkok, Th\u00E1i Lan",
+          nav:['Trang ch\u1EE7','H\u1ECDc vi\u1EC7n Golf','X\u01B0\u1EDFng S\u1EEDa ch\u1EEFa','B\u1EA3ng gi\u00E1','Li\u00EAn h\u1EC7'],
+          hero_title:'L\u00C0M<br>CH\u1EE6<br>CU\u1ED8C<br><span class="green">CH\u01A0I</span>',
+          hero_desc:'H\u01B0\u1EDBng d\u1EABn golf cao c\u1EA5p v\u00E0 s\u1EEDa ch\u1EEFa g\u1EADy \u0111\u1EB3ng c\u1EA5p b\u1EADc th\u1EA7y. <span class="highlight">Kh\u00F4ng r\u00E0o c\u1EA3n ng\u00F4n ng\u1EEF.</span>',
+          hero_sub:'X\u01B0\u1EDFng k\u1EF9 thu\u1EADt t\u1EA1i ch\u1ED7. B\u1ED1n ng\u00F4n ng\u1EEF, m\u1ED9t \u0111i\u1EC3m \u0111\u1EBFn.',
+          hero_btn1:'KH\u00C1M PH\u00C1 H\u1ECCC VI\u1EC6N', hero_btn2:'X\u01AF\u1EDENG S\u1EECA CH\u1EEEA',
+          global_title:'\u{1F310} TRUY C\u1EACP TO\u00C0N C\u1EA6U',
+          marquee:['H\u01AF\u1EDANG D\u1EA8N GOLF CHUY\u00CAN NGHI\u1EC6P','S\u1EECA CH\u1EEEA G\u1EACY B\u1EACC TH\u1EA6Y'],
+          about_label:'\u26A1 V\u1EC0 CH\u00DANG T\u00D4I',
+          about_title:'Golf<br><span class="green">\u0110\u1EB3ng C\u1EA5p</span>',
+          about_desc:'Trung t\u00E2m hi\u1EC7n \u0111\u1EA1i cho hu\u1EA5n luy\u1EC7n chuy\u00EAn nghi\u1EC7p v\u00E0 s\u1EEDa ch\u1EEFa g\u1EADy golf chuy\u00EAn gia. Ch\u00FAng t\u00F4i k\u1EBFt h\u1EE3p h\u01B0\u1EDBng d\u1EABn k\u1EF9 thu\u1EADt v\u1EDBi \u0111i\u1EC1u ch\u1EC9nh thi\u1EBFt b\u1ECB ch\u00EDnh x\u00E1c cho nh\u1EEFng golfer mu\u1ED1n ch\u01A1i t\u1ED1t nh\u1EA5t.',
+          about_feat:['Hu\u1EA5n luy\u1EC7n Chuy\u00EAn nghi\u1EC7p','S\u1EEDa ch\u1EEFa G\u1EADy Chuy\u00EAn gia','\u0110i\u1EC1u ch\u1EC9nh Ch\u00EDnh x\u00E1c'],
+          master_label:'B\u1EACC TH\u1EA6Y',
+          master_intro:'Hu\u1EA5n luy\u1EC7n ch\u00EDnh x\u00E1c t\u1EEB hu\u1EA5n luy\u1EC7n vi\u00EAn n\u00F3i b\u1ED1n th\u1EE9 ti\u1EBFng. S\u1EF1 th\u00E0nh th\u1EA1o k\u1EF9 thu\u1EADt k\u1EBFt h\u1EE3p tr\u00ED tu\u1EC7 v\u0103n h\u00F3a.',
+          master_role:'HEAD PRO',
+          master_spec_l:'CHUY\u00CAN M\u00D4N',
+          master_spec:'Hu\u1EA5n luy\u1EC7n golf \u0111a ng\u00F4n ng\u1EEF, chu\u1EA9n b\u1ECB gi\u1EA3i \u0111\u1EA5u qu\u1ED1c t\u1EBF, ph\u00E9p l\u1ECBch s\u1EF1 golf \u0111a v\u0103n h\u00F3a, k\u1EF9 thu\u1EADt bi\u1EC3u di\u1EC5n Nh\u1EADt B\u1EA3n, ph\u00E1t tri\u1EC3n golf thanh thi\u1EBFu ni\u00EAn, t\u01B0 v\u1EA5n golf \u0111a th\u1ECB tr\u01B0\u1EDDng.',
+          master_lang_l:'NG\u00D4N NG\u1EEE',
+          master_lang:'Ti\u1EBFng Nh\u1EADt, Ti\u1EBFng Anh, Ti\u1EBFng Th\u00E1i, Ti\u1EBFng Vi\u1EC7t',
+          master_bio:"Ken Sugiyama l\u00E0 \u0111\u1ED9ng l\u1EF1c \u0111\u1EB1ng sau Ken's Golf. Sinh ra t\u1EA1i Nh\u1EADt B\u1EA3n v\u00E0 l\u1EDBn l\u00EAn \u1EDF Th\u00E1i Lan t\u1EEB n\u0103m 2 tu\u1ED5i, Ken mang \u0111\u1EBFn g\u00F3c nh\u00ECn qu\u1ED1c t\u1EBF \u0111\u1ED9c \u0111\u00E1o cho m\u00F4n th\u1EC3 thao n\u00E0y. Anh \u0111\u00E3 r\u00E8n luy\u1EC7n k\u1EF9 n\u0103ng chuy\u00EAn nghi\u1EC7p t\u1EA1i c\u00E2u l\u1EA1c b\u1ED9 golf tr\u01B0\u1EDDng Mizuho danh ti\u1EBFng \u1EDF Ibaraki, Nh\u1EADt B\u1EA3n. \u0110\u1EC3 \u0111\u1EA3m b\u1EA3o tr\u1EA3i nghi\u1EC7m ch\u00E0o \u0111\u00F3n cho m\u1ECDi ng\u01B0\u1EDDi, Ken c\u00F3 th\u1EC3 n\u00F3i 4 ng\u00F4n ng\u1EEF. M\u1EE5c ti\u00EAu c\u1EE7a anh l\u00E0 k\u1EBFt h\u1EE3p \u0111\u00E0o t\u1EA1o v\u1EDBi c\u00E1ch ti\u1EBFp c\u1EADn th\u00E2n thi\u1EC7n, d\u1EC5 ti\u1EBFp c\u1EADn cho golfer \u1EDF m\u1ECDi tr\u00ECnh \u0111\u1ED9.",
+          master_cta:'\u0110\u1EB6T BU\u1ED4I H\u1ECCC \u2192',
+          atelier_label:'\u{1F527} X\u01AF\u1EDENG K\u1EF8 THU\u1EACT',
+          atelier_title:'S\u1EEDa ch\u1EEFa<br>G\u1EADy Golf',
+          atelier_desc:'X\u01B0\u1EDFng t\u1EA1i ch\u1ED7 c\u1EE7a ch\u00FAng t\u00F4i kh\u00F4ng ch\u1EC9 l\u00E0 ti\u1EC7m s\u1EEDa ch\u1EEFa. \u0110\u00F3 l\u00E0 ph\u00F2ng th\u00ED nghi\u1EC7m c\u00F4ng ngh\u1EC7 cao n\u01A1i d\u1EEF li\u1EC7u g\u1EB7p g\u1EE1 tay ngh\u1EC1. T\u1EEB \u0111i\u1EC1u ch\u1EC9nh loft/lie \u0111\u1EBFn t\u1ED1i \u01B0u h\u00F3a shaft ho\u00E0n ch\u1EC9nh.',
+          atelier_svc:['\u0110I\u1EC0U CH\u1EC8NH LOFT & LIE','SHAFT PURING & SPINING','T\u00D9Y CH\u1EC8NH GRIP','C\u00C2N B\u1EB0NG SWING WEIGHT'],
+          atelier_btn:'V\u00C0O X\u01AF\u1EDENG',
+          atelier_stat:['TR\u1EA0NG TH\u00C1I','\u0110ang ho\u1EA1t \u0111\u1ED9ng','C\u1EA2I THI\u1EC6N','K\u1EF9 n\u0103ng x10'],
+          adv_title:'L\u1EE3i th\u1EBF <span class="green">c\u1EE7a ch\u00FAng t\u00F4i</span>',
+          adv:[
+            ['Hu\u1EA5n luy\u1EC7n Golf Nh\u1EADt B\u1EA3n Tinh hoa','\u0110\u1EAFm m\u00ECnh trong s\u1EF1 ch\u00EDnh x\u00E1c v\u00E0 tri\u1EBFt l\u00FD golf Nh\u1EADt B\u1EA3n. C\u00E1c hu\u1EA5n luy\u1EC7n vi\u00EAn tinh hoa mang k\u1EF9 thu\u1EADt truy\u1EC1n th\u1ED1ng v\u00E0 hi\u1EC3u bi\u1EBFt hi\u1EC7n \u0111\u1EA1i \u0111\u1EC3 ho\u00E0n thi\u1EC7n tr\u00F2 ch\u01A1i c\u1EE7a b\u1EA1n.','KH\u00C1M PH\u00C1 PH\u01AF\u01A0NG PH\u00C1P \u2192'],
+            ['S\u1EA3n xu\u1EA5t N\u1ED9i b\u1ED9 & Ki\u1EC3m so\u00E1t Ch\u1EA5t l\u01B0\u1EE3ng','X\u01B0\u1EDFng chuy\u00EAn d\u1EE5ng cho ph\u00E9p ch\u00FAng t\u00F4i duy tr\u00EC ti\u00EAu chu\u1EA9n ki\u1EC3m so\u00E1t ch\u1EA5t l\u01B0\u1EE3ng nghi\u00EAm ng\u1EB7t v\u00E0 cung c\u1EA5p gi\u1EA3i ph\u00E1p t\u00F9y ch\u1EC9nh theo th\u00F4ng s\u1ED1 ch\u00EDnh x\u00E1c c\u1EE7a b\u1EA1n.','KH\u00C1M PH\u00C1 N\u0102NG L\u1EF0C \u2192'],
+            ['Ph\u1EA1m vi To\u00E0n c\u1EA7u v\u1EDBi H\u1ED7 tr\u1EE3 \u0110a ng\u00F4n ng\u1EEF','Ch\u00FAng t\u00F4i t\u1EF1 h\u00E0o ph\u1EE5c v\u1EE5 kh\u00E1ch h\u00E0ng qu\u1ED1c t\u1EBF \u0111a d\u1EA1ng v\u1EDBi \u0111\u1ED9i ng\u0169 th\u00F4ng th\u1EA1o nhi\u1EC1u ng\u00F4n ng\u1EEF, \u0111\u1EA3m b\u1EA3o giao ti\u1EBFp li\u1EC1n m\u1EA1ch v\u00E0 h\u1ED7 tr\u1EE3 c\u00E1 nh\u00E2n h\u00F3a.','LI\u00CAN H\u1EC6 \u0110\u1ED8I NG\u0168 \u2192'],
+            ['H\u00E0ng th\u1EADp k\u1EC9 Kinh nghi\u1EC7m','H\u01B0\u1EDFng l\u1EE3i t\u1EEB ki\u1EBFn th\u1EE9c t\u1EADp th\u1EC3 v\u00E0 tinh th\u1EA7n \u0111\u1ED5i m\u1EDBi c\u1EE7a c\u00E1c chuy\u00EAn gia d\u00E0y d\u1EA1n kinh nghi\u1EC7m. \u0110\u1ED9i ng\u0169 mang h\u00E0ng th\u1EADp k\u1EC9 kinh nghi\u1EC7m v\u00E0o m\u1ED7i d\u1EF1 \u00E1n.','G\u1EB6P CHUY\u00CAN GIA \u2192'],
+            ['Chu\u1EA9n b\u1ECB Gi\u1EA3i \u0111\u1EA5u','N\u00E2ng cao l\u1EE3i th\u1EBF c\u1EA1nh tranh v\u1EDBi c\u00E1c ch\u01B0\u01A1ng tr\u00ECnh chu\u1EA9n b\u1ECB gi\u1EA3i \u0111\u1EA5u chuy\u00EAn bi\u1EC7t. T\u1EADp trung v\u00E0o chi\u1EBFn l\u01B0\u1EE3c, s\u1EE9c b\u1EC1n tinh th\u1EA7n v\u00E0 hi\u1EC7u su\u1EA5t d\u01B0\u1EDBi \u00E1p l\u1EF1c.','CHU\u1EA8N B\u1ECA CHI\u1EBEN TH\u1EAENG \u2192'],
+            ['T\u01B0 v\u1EA5n Golf Chuy\u00EAn gia','Nh\u1EADn l\u1EDDi khuy\u00EAn c\u00E1 nh\u00E2n t\u1EEB chuy\u00EAn gia v\u1EC1 l\u1EF1a ch\u1ECDn thi\u1EBFt b\u1ECB, qu\u1EA3n l\u00FD s\u00E2n golf v\u00E0 ph\u00E1t tri\u1EC3n s\u1EF1 nghi\u1EC7p \u0111\u1EC3 t\u1ED1i \u01B0u h\u00E0nh tr\u00ECnh golf c\u1EE7a b\u1EA1n.','NH\u1EACN T\u01AF V\u1EA4N \u2192']
+          ],
+          stat:['NG\u00D4N NG\u1EEE','HU\u1EA4N LUY\u1EC6N','T\u1ED0C \u0110\u1ED8'],
+          cta_title:'S\u1EB5n s\u00E0ng<br><span class="green">N\u00E2ng t\u1EA7m?</span>',
+          cta_sub:'Nh\u1EAFn LINE cho ch\u00FAng t\u00F4i. Ch\u00FAng t\u00F4i n\u00F3i ng\u00F4n ng\u1EEF c\u1EE7a b\u1EA1n.',
+          cta_btn:['\u0110\u1EB6T QUA LINE','XEM B\u1EA2NG GI\u00C1'],
+          footer_desc:'H\u01B0\u1EDBng d\u1EABn golf cao c\u1EA5p v\u00E0 s\u1EEDa ch\u1EEFa g\u1EADy \u0111\u1EB3ng c\u1EA5p b\u1EADc th\u1EA7y. D\u1ECBch v\u1EE5 \u0111a ng\u00F4n ng\u1EEF b\u1EB1ng ti\u1EBFng Anh, Nh\u1EADt, Th\u00E1i v\u00E0 Vi\u1EC7t.',
+          footer_h:['Li\u00EAn k\u1EBFt Nhanh','D\u1ECBch v\u1EE5'],
+          footer_svc:['Hu\u1EA5n luy\u1EC7n Hi\u1EC7u su\u1EA5t','N\u1EC1n t\u1EA3ng Golf Nh\u1EADt B\u1EA3n','Fitting & S\u1EEDa ch\u1EEFa G\u1EADy','\u0110i\u1EC1u ch\u1EC9nh K\u1EF9 thu\u1EADt','H\u01B0\u1EDBng d\u1EABn \u0110a ng\u00F4n ng\u1EEF'],
+          footer_copy:"\u00A9 2026 Ken's Golf. B\u1EA3o l\u01B0u m\u1ECDi quy\u1EC1n."
+        }
+      };
+
+      let curLang = 'en';
+
+      function apply(t) {
+        /* Nav */
+        document.querySelectorAll('.nav-links > li > a').forEach((a,i) => { if(t.nav[i]) a.textContent = t.nav[i]; });
+        /* Hero */
+        const h1 = document.querySelector('.hero h1'); if(h1) h1.innerHTML = t.hero_title;
+        const hd = document.querySelector('.hero-desc'); if(hd) hd.innerHTML = t.hero_desc;
+        const hs = document.querySelector('.hero-desc-sub'); if(hs) hs.textContent = t.hero_sub;
+        const hbs = document.querySelectorAll('.hero-buttons .btn');
+        if(hbs[0]) hbs[0].textContent = t.hero_btn1;
+        if(hbs[1]) hbs[1].textContent = t.hero_btn2;
+        const ga = document.querySelector('.global-access-title'); if(ga) ga.innerHTML = t.global_title;
+        /* Marquee */
+        const mt = document.getElementById('marqueeTrack');
+        if(mt) { const m = '<div class="marquee-item">'+t.marquee[0]+' <span class="star">\u2605</span></div><div class="marquee-item">'+t.marquee[1]+' <span class="star">\u2605</span></div>'; mt.innerHTML = m.repeat(4); }
+        /* About */
+        const al = document.querySelector('#about .section-label'); if(al) al.innerHTML = t.about_label;
+        const at = document.querySelector('.about-title'); if(at) at.innerHTML = t.about_title;
+        const ad = document.querySelector('.about-desc'); if(ad) ad.textContent = t.about_desc;
+        document.querySelectorAll('.about-feature').forEach((f,i) => {
+          if(t.about_feat[i]) { const ico = f.querySelector('.ico'); f.textContent = ''; f.prepend(ico); f.append(' '+t.about_feat[i]); }
+        });
+        /* Master */
+        const ml = document.querySelector('#master .section-label'); if(ml) ml.textContent = t.master_label;
+        const mi = ml ? ml.nextElementSibling : null; if(mi && mi.tagName==='P') mi.textContent = t.master_intro;
+        const mr = document.querySelector('.master-role'); if(mr) mr.textContent = t.master_role;
+        const mdl = document.querySelectorAll('.master-detail-label');
+        const mdt = document.querySelectorAll('.master-detail-text');
+        if(mdl[0]) mdl[0].textContent = t.master_spec_l;
+        if(mdt[0]) mdt[0].textContent = t.master_spec;
+        if(mdl[1]) mdl[1].textContent = t.master_lang_l;
+        if(mdt[1]) mdt[1].textContent = t.master_lang;
+        const mb = document.querySelector('.master-bio'); if(mb) mb.textContent = t.master_bio;
+        const mc = document.querySelector('.master-cta .link-arrow'); if(mc) mc.textContent = t.master_cta;
+        /* Atelier */
+        const ael = document.querySelector('#atelier .section-label'); if(ael) ael.innerHTML = t.atelier_label;
+        const aet = document.querySelector('.atelier-title'); if(aet) aet.innerHTML = t.atelier_title;
+        const aed = document.querySelector('.atelier-desc'); if(aed) aed.textContent = t.atelier_desc;
+        document.querySelectorAll('.atelier-service').forEach((s,i) => {
+          if(t.atelier_svc[i]) { const ico = s.querySelector('.ico'); s.textContent = ''; s.prepend(ico); s.append(' '+t.atelier_svc[i]); }
+        });
+        const aeb = document.querySelector('#atelier .btn-green'); if(aeb) aeb.textContent = t.atelier_btn;
+        const asl = document.querySelectorAll('.atelier-photo-card .stat-label');
+        const asv = document.querySelectorAll('.atelier-photo-card .stat-value');
+        if(asl[0]) asl[0].textContent = t.atelier_stat[0]; if(asv[0]) asv[0].textContent = t.atelier_stat[1];
+        if(asl[1]) asl[1].textContent = t.atelier_stat[2]; if(asv[1]) asv[1].textContent = t.atelier_stat[3];
+        /* Advantages */
+        const avt = document.querySelector('.adv-title'); if(avt) avt.innerHTML = t.adv_title;
+        document.querySelectorAll('.adv-card').forEach((c,i) => {
+          if(t.adv[i]) {
+            const h3 = c.querySelector('h3'); if(h3) h3.textContent = t.adv[i][0];
+            const p = c.querySelector('p'); if(p) p.textContent = t.adv[i][1];
+            const lk = c.querySelector('.link-arrow'); if(lk) lk.textContent = t.adv[i][2];
+          }
+        });
+        /* Stats */
+        document.querySelectorAll('.stat-item .stat-label').forEach((s,i) => { if(t.stat[i]) s.textContent = t.stat[i]; });
+        /* CTA */
+        const ct = document.querySelector('.cta-title'); if(ct) ct.innerHTML = t.cta_title;
+        const cs = document.querySelector('.cta-sub'); if(cs) cs.textContent = t.cta_sub;
+        const cbs = document.querySelectorAll('.cta-buttons .btn');
+        if(cbs[0]) cbs[0].textContent = t.cta_btn[0]; if(cbs[1]) cbs[1].textContent = t.cta_btn[1];
+        /* Footer */
+        const fd = document.querySelector('.footer-brand-desc'); if(fd) fd.textContent = t.footer_desc;
+        const fh = document.querySelectorAll('.footer-col h4');
+        if(fh[0]) fh[0].textContent = t.footer_h[0]; if(fh[1]) fh[1].textContent = t.footer_h[1];
+        const fc0 = document.querySelectorAll('.footer-col');
+        if(fc0[0]) fc0[0].querySelectorAll('li a').forEach((a,i) => { if(t.nav[i]) a.textContent = t.nav[i]; });
+        if(fc0[1]) fc0[1].querySelectorAll('li a').forEach((a,i) => { if(t.footer_svc[i]) a.textContent = t.footer_svc[i]; });
+        const fcp = document.querySelector('.footer-bottom > span'); if(fcp) fcp.textContent = t.footer_copy;
+      }
+
+      function setLang(lang, animate) {
+        if(!T[lang] || lang === curLang) return;
+        curLang = lang;
+        document.title = T[lang].title;
+        document.documentElement.lang = {en:'en',jp:'ja',th:'th',vn:'vi'}[lang] || lang;
+        /* Update active buttons */
+        document.querySelectorAll('[data-lang]').forEach(a => a.classList.toggle('active', a.dataset.lang === lang));
+        if(animate) {
+          document.body.style.opacity = '0.3';
+          setTimeout(() => { apply(T[lang]); document.body.style.opacity = '1'; }, 250);
+        } else {
+          apply(T[lang]);
+        }
+        localStorage.setItem('kg-lang', lang);
+        console.log('%c\u{1F310} Language: ' + lang.toUpperCase(), 'color:#2CB441;font-weight:bold;');
+      }
+
+      /* Attach to all lang buttons (header + footer) */
+      document.querySelectorAll('[data-lang]').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          setLang(a.dataset.lang, true);
+          /* Close mobile menu if open */
+          document.getElementById('hamburger').classList.remove('open');
+          document.getElementById('navLinks').classList.remove('active');
+          document.getElementById('navLang').classList.remove('mobile-show');
+        });
+      });
+
+      /* Mobile: show lang buttons with hamburger */
+      document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLang').classList.toggle('mobile-show');
+      });
+
+      /* Restore saved language on load */
+      const saved = localStorage.getItem('kg-lang');
+      if(saved && saved !== 'en' && T[saved]) setLang(saved, false);
+    })();
   </script>
 
 </body>
